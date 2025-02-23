@@ -35,14 +35,14 @@ function UserViewHomePage() {
       id="home"
     >
       {/* Event Date */}
-      <div className="absolute font-subHeading font-semibold px-6 py-2 text-xl flex items-center gap-3 rounded-full top-4 left-1/2 transform -translate-x-1/2  text-black ">
-        <span className="connect font-subHeading animate-shine font-bold text-lg sm:text-2xl xl:text-xl md:text-2xl lg:text-3xl 2xl:text-2xl">
+      <div className="absolute z-40 font-subHeading font-semibold px-6 py-2  flex items-center gap-3 rounded-full top-4 left-1/2 transform -translate-x-1/2  text-black ">
+        <span className="connect font-subHeading animate-shine font-bold text-xl sm:text-2xl xl:text-xl md:text-2xl lg:text-3xl 2xl:text-2xl">
           FEB 24 - 28
         </span>
       </div>
 
       {/* Background Effect */}
-      <div className="absolute z-20 inset-0 h-full w-full bg-white sm:mt-10 md:mt-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_70%_50%_at_50%_40%,#000_60%,transparent_100%)]">
+      <div className="absolute z-20 inset-0 h-full w-full bg-white sm:mt-10 md:mt-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_40%,#000_60%,transparent_100%)]">
         <div className="flex flex-col items-center justify-center gap-6">
           {/* Logo */}
           <div className="flex justify-center items-center w-56 h-56 mt-12 shadow-2xl rounded-full p-3 bg-white">
