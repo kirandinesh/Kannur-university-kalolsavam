@@ -4,12 +4,6 @@ import { Fragment } from "react";
 function RouteGuard({ authenticated, user, element }) {
   const location = useLocation();
 
-  if (!authenticated) {
-    if (location.pathname !== "/adminlogin") {
-      return <Navigate to="/adminlogin" />;
-    }
-  }
-
   if (authenticated && user?.role === "admin" && location.pathname === "/") {
     return <Navigate to="/adminhome" />;
   }
