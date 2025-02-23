@@ -25,13 +25,17 @@ function AchievementList() {
         </h1>
       </div>
       <main className="grid grid-cols-1 lg:grid lg:grid-cols-2 gap-5 mt-5">
-        {achieventList &&
-          achieventList.length > 0 &&
+        {achieventList && achieventList.length > 0 ? (
           achieventList.map((achievement) => (
             <Card className="overflow-hidden p-3 " key={achievement?._id}>
               <AchievementTile achievement={achievement} />
             </Card>
-          ))}
+          ))
+        ) : (
+          <div className="flex justify-center items-center font-bold sm:text-lg md:text-xl">
+            <p>Not Yet Published</p>
+          </div>
+        )}
       </main>
     </section>
   );

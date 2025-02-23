@@ -6,11 +6,11 @@ function TopCollegeTile({ college, index }) {
   ];
   return (
     <div
-      className={`service-card w-full justify-between rounded-2xl shadow-xl relative sm:p-12 md:p-5 lg:p-10 cursor-pointer snap-start shrink-0 py-8 px-6 flex flex-col ${gradients[index]} items-start gap-3 transition-all duration-300 group `}
+      className={`service-card w-full justify-between rounded-2xl shadow-xl  relative  sm:p-12 md:p-5 lg:p-10 cursor-pointer snap-start shrink-0 py-8 px-6 flex flex-col ${gradients[index]} items-start gap-3 transition-all duration-300 group `}
     >
-      <div className="flex justify-between xl:space-x-10 space-x-4 w-full items-center">
+      <div className="flex justify-between xl:space-x-10 space-x-4  w-full items-center">
         <div>
-          <div className="bg-red-300">
+          <div className="bg-red-300 z-10 ">
             {index === 0 ? (
               <svg
                 version="1.1"
@@ -46,7 +46,7 @@ function TopCollegeTile({ college, index }) {
             {index + 1}
           </p>
         </div>
-        <div className="grow flex flex-col ">
+        <div className="grow z-30 flex flex-col ">
           <h2
             className="font-bold sm:leading-10 tracking-wide text-base font-heading 
           sm:text-xl md:text-2xl
