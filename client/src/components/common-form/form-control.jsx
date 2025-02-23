@@ -34,16 +34,14 @@ function FormControls({ formControls = [], formData, setFormData }) {
             value={currentControlItemValue}
             className={`${!isGroupToggled ? "bg-gray-300" : ""}  ${
               isSharedGroupToggled ? "bg-white" : ""
-            }`}
+            } bg-white`}
             onChange={(event) => {
               const value = event.target.value;
 
-              if (!isNaN(value) && Number(value) >= 0) {
-                setFormData({
-                  ...formData,
-                  [getControlItem.name]: value,
-                });
-              }
+              setFormData({
+                ...formData,
+                [getControlItem.name]: value,
+              });
             }}
           />
         );
