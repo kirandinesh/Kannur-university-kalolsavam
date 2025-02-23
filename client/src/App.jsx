@@ -24,7 +24,6 @@ function App() {
   return (
     <Routes>
       <Route path="/adminlogin" element={<AuthPage />} />
-
       <Route path="/" element={<UserCommonLayout />} />
 
       <Route
