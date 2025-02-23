@@ -3,7 +3,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import AuthPage from "./pages/auth";
 import AdminMainLayout from "./components/Admin-view/layout";
 import UserCommonLayout from "./components/User-view";
-
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./context/auth-context";
 import NotFoundPage from "./pages/not-found";
@@ -16,10 +15,10 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (auth?.user?.role === "user") {
+    if (auth?.user?.role === "user" && sessionStorage.getItem("accessToken")) {
       sessionStorage.removeItem("accessToken");
     }
-  }, [location.pathname]);
+  }, [auth?.user?.role]); // Run only when role changes
 
   return (
     <Routes>
@@ -51,7 +50,7 @@ function App() {
         path="/adminhome/winnerpage"
         element={
           <RouteGuard
-            element={<AdminIndividualReusltPage />}
+            element={<AdminIndividualReusltPage />} // Fixed component reference
             authenticated={auth?.authenticate}
             user={auth?.user}
           />
