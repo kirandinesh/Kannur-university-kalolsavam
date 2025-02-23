@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import AuthPage from "./pages/auth";
 import AdminMainLayout from "./components/Admin-view/layout";
 import UserCommonLayout from "./components/User-view";
+
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./context/auth-context";
 import NotFoundPage from "./pages/not-found";
@@ -22,10 +23,6 @@ function App() {
 
   return (
     <Routes>
-      {/* Always show User Layout on "/" */}
-      <Route path="/" element={<UserCommonLayout />} />
-
-      {/* Allow manual access to /adminlogin */}
       <Route
         path="/adminlogin"
         element={
@@ -37,7 +34,8 @@ function App() {
         }
       />
 
-      {/* Admin Protected Routes */}
+      <Route path="/" element={<UserCommonLayout />} />
+
       <Route
         path="/adminhome"
         element={
@@ -48,6 +46,7 @@ function App() {
           />
         }
       />
+
       <Route
         path="/adminhome/winnerpage"
         element={
@@ -68,8 +67,6 @@ function App() {
           />
         }
       />
-
-      {/* 404 Page */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

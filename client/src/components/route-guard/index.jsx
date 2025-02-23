@@ -3,22 +3,31 @@ import { Fragment } from "react";
 
 function RouteGuard({ authenticated, user, element }) {
   const location = useLocation();
-  console.log(
-    "Authenticated:",
-    authenticated,
-    "User Role:",
-    user?.role,
-    "Path:",
-    location.pathname
-  );
 
-  // If the user is not authenticated and trying to access admin pages, redirect to /adminlogin
-  if (!authenticated && location.pathname.startsWith("/adminhome")) {
-    return <Navigate to="/adminlogin" />;
+  if (!authenticated) {
+    if (location.pathname.includes("/adminlogin")) {
+      return <Navigate to="/adminlogin" />;
+    }
   }
 
-  // If an authenticated admin is on "/" and hasn't manually typed anything else, do not force redirect
   if (authenticated && user?.role === "admin" && location.pathname === "/") {
+    return <Navigate to="/adminhome" />;
+  }
+
+  if (
+    authenticated &&
+    user?.role !== "admin" &&
+    (location.pathname.includes("adminhome") ||
+      location.pathname.includes("/adminlogin"))
+  ) {
+    return <Navigate to="/" />;
+  }
+
+  if (
+    authenticated &&
+    user?.role === "admin" &&
+    !location.pathname.includes("adminhome")
+  ) {
     return <Navigate to="/adminhome" />;
   }
 
