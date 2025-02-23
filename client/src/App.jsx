@@ -15,13 +15,17 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (auth?.user?.role === "user" && sessionStorage.getItem("accessToken")) {
+    if (auth?.user?.role === "user") {
       sessionStorage.removeItem("accessToken");
     }
-  }, [auth?.user?.role]); // Run only when role changes
+  }, [location.pathname]);
 
   return (
     <Routes>
+      {/* Always show User Layout on "/" */}
+      <Route path="/" element={<UserCommonLayout />} />
+
+      {/* Allow manual access to /adminlogin */}
       <Route
         path="/adminlogin"
         element={
@@ -33,8 +37,7 @@ function App() {
         }
       />
 
-      <Route path="/" element={<UserCommonLayout />} />
-
+      {/* Admin Protected Routes */}
       <Route
         path="/adminhome"
         element={
@@ -45,12 +48,11 @@ function App() {
           />
         }
       />
-
       <Route
         path="/adminhome/winnerpage"
         element={
           <RouteGuard
-            element={<AdminIndividualReusltPage />} // Fixed component reference
+            element={<AdminIndividualReusltPage />}
             authenticated={auth?.authenticate}
             user={auth?.user}
           />
@@ -66,6 +68,8 @@ function App() {
           />
         }
       />
+
+      {/* 404 Page */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
