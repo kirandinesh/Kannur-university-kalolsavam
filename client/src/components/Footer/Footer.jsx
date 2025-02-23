@@ -10,7 +10,7 @@ function Footer() {
           <span className="font-medium">Kiran Dinesh</span>
         </p>
         <a
-          href="https://www.instagram.com/your_college_instagram" // Replace with actual Instagram link
+          href="https://www.instagram.com/kannur_university_artsfestival?igsh=Y211Yms0bHlucHQz" 
           target="_blank"
           rel="noopener noreferrer"
           className="text-pink-600 font-semibold hover:underline  inline-block"
