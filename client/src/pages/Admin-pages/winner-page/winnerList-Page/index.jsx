@@ -14,6 +14,7 @@ function WinnerListPage() {
     setcurrentWinnerUpdateEditedId,
     searchResults,
     setSearchResults,
+    setIsSharedGroupToggled,
   } = useContext(AdminContext);
   const [keyword, setKeyword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();

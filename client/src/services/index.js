@@ -171,3 +171,20 @@ export async function adminDeleteAnnouncements(id) {
   );
   return data;
 }
+//college point update
+
+export async function addToCollegeTotalPoints(formData) {
+  const { data } = await axiosInstance.put(
+    "/admin/college/add-point",
+    formData
+  );
+  return data;
+}
+
+export async function reduceFromCollegeTotalPoints(formData) {
+  const { data } = await axiosInstance.put(
+    "/admin/college/reduce-point",
+    formData
+  );
+  return data;
+}

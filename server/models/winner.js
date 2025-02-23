@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
 
+const groupMemberResultSchema = new mongoose.Schema({
+  memberName: { type: String },
+});
+
 const studentResultSchema = new mongoose.Schema({
   studentName: { type: String, required: true },
+  studentCode: { type: String, trim: true },
+  members: { type: [groupMemberResultSchema], default: [] },
   collegeName: { type: String },
   grade: { type: String },
   points: { type: Number },

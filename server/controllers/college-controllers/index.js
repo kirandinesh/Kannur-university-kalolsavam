@@ -48,4 +48,90 @@ const getAllCollege = async (req, res) => {
   }
 };
 
-module.exports = { addCollege, getAllCollege };
+const addTotalPointValue = async (req, res) => {
+  try {
+    const { collegeName, points } = req.body;
+
+    if (
+      !collegeName ||
+      typeof collegeName !== "string" ||
+      typeof points !== "number"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Invalid input. Provide a valid collegeName (string) and points (number).",
+      });
+    }
+
+    const updatedCollege = await College.findOneAndUpdate(
+      { name: collegeName },
+      { $inc: { totalPoints: points } },
+      { new: true }
+    );
+
+    if (!updatedCollege) {
+      return res.status(404).json({
+        success: false,
+        message: "College not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Updated College points successfully",
+      data: updatedCollege,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
+const reduceTotalPointValue = async (req, res) => {
+  try {
+    const { collegeName, points } = req.body;
+
+    if (!collegeName || typeof points !== "number") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid input. Provide name and points as a number.",
+      });
+    }
+
+    const updatedCollege = await College.findOneAndUpdate(
+      { name: collegeName },
+      { $inc: { totalPoints: -points } },
+      { new: true }
+    );
+
+    if (!updatedCollege) {
+      return res.status(404).json({
+        success: false,
+        message: "College not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Reduced College points successfully",
+      data: updatedCollege,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
+module.exports = {
+  addCollege,
+  getAllCollege,
+  addTotalPointValue,
+  reduceTotalPointValue,
+};

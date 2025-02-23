@@ -623,6 +623,10 @@ export const collegeList = [
     id: "WMO-Imam-Gazzali-Arts-&-Science-College-Koolivayal",
     label: "WMO Imam Gazzali Arts & Science College, Koolivayal",
   },
+  {
+    id: "Tellicherry-Institute-of-Advanced-Studies",
+    label: "Tellicherry Institute of Advanced Studies",
+  },
 ];
 
 export const resultPublishFormControls = [
@@ -691,30 +695,6 @@ export const publishResultFormcontrol = [
     placeholder: "",
     options: eventOptions,
   },
-  {
-    name: "groupGrade",
-    label: "Group Grade ",
-    componentType: "select",
-    type: "text",
-    placeholder: "",
-    options: gradeOptions,
-  },
-  {
-    name: "groupCollegeName",
-    label: "Group College Name",
-    componentType: "select",
-    type: "text",
-    placeholder: "",
-    options: collegeList,
-  },
-
-  {
-    name: "groupPoints",
-    label: "Group Points ",
-    componentType: "input",
-    type: "number",
-    placeholder: "Enter the Points",
-  },
 ];
 
 export const winnerResultFormcontrol = [
@@ -733,6 +713,7 @@ export const winnerResultFormcontrol = [
     placeholder: "",
     options: collegeList,
   },
+
   {
     name: "grade",
     label: "Grade",
@@ -771,14 +752,34 @@ export const publishResultInitialFormData = {
 export const winnerResultFirstInitialFormData = [
   {
     studentName: "",
+    studentCode: "",
     collegeName: "",
     grade: "",
     points: "",
   },
 ];
+
+//group item first
+export const groupwinnerResultFirstInitialFormData = [
+  {
+    memberName: "",
+  },
+];
+export const groupwinnerResultSecondInitialFormData = [
+  {
+    memberName: "",
+  },
+];
+export const groupwinnerResultThirdInitialFormData = [
+  {
+    memberName: "",
+  },
+];
+////
 export const winnerResultSecondInitialFormData = [
   {
     studentName: "",
+    studentCode: "",
     collegeName: "",
     grade: "",
     points: "",
@@ -787,6 +788,7 @@ export const winnerResultSecondInitialFormData = [
 export const winnerResultThirdInitialFormData = [
   {
     studentName: "",
+    studentCode: "",
     collegeName: "",
     grade: "",
     points: "",
@@ -868,6 +870,29 @@ export const announceIntitialFormData = {
 export const achievementInitialFormData = {
   achievementName: "",
   studentName: "",
+  collegeName: "",
+  points: "",
+};
+
+export const collegePointUpdateFormcontrol = [
+  {
+    name: "collegeName",
+    label: "College Name",
+    componentType: "select",
+    type: "text",
+    placeholder: "",
+    options: collegeList,
+  },
+  {
+    name: "points",
+    label: "Points",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter the Points",
+  },
+];
+
+export const collegePointInitialFormData = {
   collegeName: "",
   points: "",
 };

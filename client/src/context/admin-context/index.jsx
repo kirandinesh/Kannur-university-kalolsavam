@@ -1,7 +1,11 @@
 import {
   achievementInitialFormData,
   announceIntitialFormData,
+  collegePointInitialFormData,
   eventInitialFormData,
+  groupwinnerResultFirstInitialFormData,
+  groupwinnerResultSecondInitialFormData,
+  groupwinnerResultThirdInitialFormData,
   publishResultInitialFormData,
   resultPublishInitialFormData,
   winnerResultFirstInitialFormData,
@@ -25,6 +29,19 @@ export default function AdminProvider({ children }) {
   );
 
   const [publishWinnerList, setPublishWinnerList] = useState([]);
+  //group
+  const [groupWinnerFirstFormData, setGroupWinnerFirstFormData] = useState(
+    groupwinnerResultFirstInitialFormData
+  );
+
+  const [groupWinnerSecondFormData, setGroupWinnerSecondFormData] = useState(
+    groupwinnerResultSecondInitialFormData
+  );
+
+  const [groupWinnerThridFormData, setGroupWinnerThirdFormData] = useState(
+    groupwinnerResultThirdInitialFormData
+  );
+  //
   const [winnerFirstFormData, setWinnerFirstFormData] = useState(
     winnerResultFirstInitialFormData
   );
@@ -50,7 +67,12 @@ export default function AdminProvider({ children }) {
     useState(null);
   const [achieventList, setAchieventList] = useState([]);
   const [announcementList, setAnnouncementList] = useState([]);
-
+  const [addPointFormData, setAddPointFormData] = useState(
+    collegePointInitialFormData
+  );
+  const [reducePointFormData, setReducePointFormData] = useState(
+    collegePointInitialFormData
+  );
   return (
     <AdminContext.Provider
       value={{
@@ -90,6 +112,16 @@ export default function AdminProvider({ children }) {
         setAnnouncementList,
         isSharedGroupToggled,
         setIsSharedGroupToggled,
+        groupWinnerFirstFormData,
+        setGroupWinnerFirstFormData,
+        groupWinnerSecondFormData,
+        setGroupWinnerSecondFormData,
+        groupWinnerThridFormData,
+        setGroupWinnerThirdFormData,
+        addPointFormData,
+        setAddPointFormData,
+        reducePointFormData,
+        setReducePointFormData,
       }}
     >
       {children}

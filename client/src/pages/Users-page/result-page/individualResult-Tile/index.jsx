@@ -27,20 +27,16 @@ function IndividualResultTile({ result }) {
         <div className="absolute top-0 left-0 bottom-0 right-0   backdrop-blur-[6px] "></div>
         <div className="relative">
           <div className="flex justify-center items-center">
-            <h2 className="text-xl md:text-2xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-t from-rose-700 via-red-500 to-white font-heading">
+            <h2
+              className="text-xl md:text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-t from-rose-700
+             via-red-500 to-white font-heading sm:text-lg xl:text-2xl"
+            >
               {result?.eventName}
             </h2>
           </div>
 
           <div className="flex flex-col gap-3">
             {/* Group College Section */}
-            {result?.groupCollegeName && (
-              <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
-                <h3 className="text-lg font-semibold text-black">
-                  {result?.groupCollegeName}
-                </h3>
-              </div>
-            )}
 
             {/* First Prize Section */}
             <div className="flex flex-col  gap-2">
@@ -80,6 +76,25 @@ function IndividualResultTile({ result }) {
                           <span className="text-gray-600 font-subHeading ">
                             {first?.collegeName}
                           </span>
+                          {first?.members?.length > 0 ? (
+                            <div className="mt-2">
+                              <div className="border-t border-b py-1 mb-1">
+                                <span>Group Members</span>
+                              </div>
+                              <div className="grid grid-cols-1 gap-2 w-full">
+                                {first?.members?.map((member, idx) => (
+                                  <button
+                                    key={idx}
+                                    className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                  >
+                                    {member?.memberName || ""}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </CarouselItem>
                     ))}
@@ -126,6 +141,25 @@ function IndividualResultTile({ result }) {
                           <span className="text-gray-600 font-subHeading ">
                             {second?.collegeName}
                           </span>
+                          {second?.members?.length > 0 ? (
+                            <div className="mt-2">
+                              <div className="border-t border-b py-1 mb-1">
+                                <span>Group Members</span>
+                              </div>
+                              <div className="grid grid-cols-1 gap-2 w-full">
+                                {second?.members?.map((member, idx) => (
+                                  <button
+                                    key={idx}
+                                    className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                  >
+                                    {member?.memberName || ""}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </CarouselItem>
                     ))}
@@ -172,6 +206,25 @@ function IndividualResultTile({ result }) {
                           <span className="text-gray-600 font-subHeading ">
                             {third?.collegeName}
                           </span>
+                          {third?.members?.length > 0 ? (
+                            <div className="mt-2">
+                              <div className="border-t border-b py-1 mb-1">
+                                <span>Group Members</span>
+                              </div>
+                              <div className="grid grid-cols-1 gap-2 w-full">
+                                {third?.members?.map((member, idx) => (
+                                  <button
+                                    key={idx}
+                                    className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                  >
+                                    {member?.memberName || ""}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </CarouselItem>
                     ))}

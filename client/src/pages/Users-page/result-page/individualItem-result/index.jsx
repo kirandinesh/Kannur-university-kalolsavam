@@ -74,7 +74,7 @@ function IndividualResultSection() {
                   indivitualResultList.length > 0 &&
                   indivitualResultList.map((result) => (
                     <CarouselItem
-                      className="sm:basis-1/2 2xl:px-5 2xl:basis-1/4  flex items-center justify-center lg:basis-1/3"
+                      className="sm:basis-1/2 2xl:px-5 2xl:basis-1/3  flex items-center justify-center lg:basis-1/3"
                       key={result?._id}
                     >
                       <IndividualResultTile result={result} />
@@ -102,7 +102,7 @@ function IndividualResultSection() {
             <CardContent
               className="max-h-screen grid grid-cols-1 lg:grid-cols-2
              lg:gap-x-16 lg:gap-y-10 lg:px-20 xl:px-10 xl:gap-x-16   sm:grid-cols-2 gap-2
-              overflow-y-auto md:gap-x-10 md:gap-y-5 2xl:grid-cols-4"
+              overflow-y-auto md:gap-x-10 md:gap-y-5 2xl:grid-cols-3"
             >
               {searchResults.length
                 ? searchResults.map((result) => (

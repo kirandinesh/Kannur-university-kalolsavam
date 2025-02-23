@@ -4,7 +4,12 @@ const mongoose = require("mongoose");
 
 const addWinner = async (req, res) => {
   try {
-    const { eventName, groupPoints = 0, groupCollegeName } = req.body;
+    const {
+      eventName,
+      groupPoints = 0,
+      groupCollegeName = "",
+      groupGrade = "",
+    } = req.body;
 
     const isEventExist = await Winner.findOne({ eventName });
     if (isEventExist) {
@@ -106,7 +111,7 @@ const getAllWinner = async (req, res) => {
 const updateWinner = async (req, res) => {
   try {
     const { id } = req.params;
-    const { groupPoints = 0, groupCollegeName } = req.body;
+    const { groupPoints = 0, groupCollegeName = "" } = req.body;
     const updatedData = req.body;
 
     const existingWinner = await Winner.findById(id);

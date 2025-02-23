@@ -3,6 +3,7 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { AuthContext } from "@/context/auth-context";
 import AdminAddAchievementPage from "@/pages/Admin-pages/Achievement-Page/add-achievements";
 import AnnouncementPage from "@/pages/Admin-pages/Announcement-page";
+import EmergencyPointUpdate from "@/pages/Admin-pages/Emergency-Page";
 import EventList from "@/pages/Admin-pages/Event-List-Page";
 import AdminIndividualReusltPage from "@/pages/Admin-pages/IndividualResult-Page";
 import WinnerListPage from "@/pages/Admin-pages/winner-page/winnerList-Page";
@@ -15,6 +16,7 @@ import {
   FileBadge,
   Megaphone,
   Play,
+  ShieldAlert,
 } from "lucide-react";
 import { useContext, useState } from "react";
 
@@ -54,6 +56,12 @@ function AdminMainContent() {
       icon: Megaphone,
       value: "announcement",
       component: <AnnouncementPage />,
+    },
+    {
+      label: "Emergency",
+      icon: ShieldAlert,
+      value: "emergency",
+      component: <EmergencyPointUpdate />,
     },
 
     {
@@ -95,7 +103,7 @@ function AdminMainContent() {
         </div>
       </aside>
 
-      <nav className="md:hidden z-[1000]  absolute top-2 left-5">
+      <nav className="md:hidden z-[1000]    fixed top-2 left-5">
         <MenuIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
 
         <div
@@ -103,7 +111,7 @@ function AdminMainContent() {
             isMenuOpen ? "left-[5%] duration-500" : "left-[-100%] duration-500"
           }`}
         >
-          <ul className="flex flex-col gap-4 p-5 relative bg-black/40 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 rounded-2xl">
+          <ul className="flex flex-col  p-2 relative bg-black/40 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 rounded-2xl">
             {menuItems.map((menuItem) => (
               <Button
                 className="w-full justify-start mb-2 font-heading font-semibold "

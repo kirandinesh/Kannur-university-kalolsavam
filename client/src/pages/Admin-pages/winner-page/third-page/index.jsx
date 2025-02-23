@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -9,9 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import {
   collegeList,
   gradeOptions,
+  groupwinnerResultThirdInitialFormData,
   winnerResultThirdInitialFormData,
 } from "@/config";
 import { AdminContext } from "@/context/admin-context";
@@ -24,6 +31,9 @@ function ThirdWinnerPage() {
     setThirdWinnerFormData,
     isGroupToggled,
     isSharedGroupToggled,
+    groupWinnerThridFormData,
+    setGroupWinnerThirdFormData,
+    setIsSharedGroupToggled,
   } = useContext(AdminContext);
   function handleNewStudents() {
     setThirdWinnerFormData([
@@ -31,6 +41,14 @@ function ThirdWinnerPage() {
       { ...winnerResultThirdInitialFormData[0] },
     ]);
   }
+
+  function handleAddGroupMembers() {
+    setGroupWinnerThirdFormData([
+      ...groupWinnerThridFormData,
+      { ...groupwinnerResultThirdInitialFormData[0] },
+    ]);
+  }
+
   function handleStudentNameChange(event, currentIndex) {
     let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
     cpyWinnerFisrtFormdata[currentIndex] = {
@@ -39,6 +57,27 @@ function ThirdWinnerPage() {
     };
     setThirdWinnerFormData(cpyWinnerFisrtFormdata);
   }
+
+  function handleStudentCodeChange(event, currentIndex) {
+    let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
+    cpyWinnerFisrtFormdata[currentIndex] = {
+      ...cpyWinnerFisrtFormdata[currentIndex],
+      studentCode: event.target.value,
+    };
+    setThirdWinnerFormData(cpyWinnerFisrtFormdata);
+  }
+
+  //group
+  function handleGroupMemberNameChange(event, currentIndex) {
+    let cpyWinnerFisrtFormdata = [...groupWinnerThridFormData];
+    cpyWinnerFisrtFormdata[currentIndex] = {
+      ...cpyWinnerFisrtFormdata[currentIndex],
+      memberName: event.target.value,
+    };
+    setGroupWinnerThirdFormData(cpyWinnerFisrtFormdata);
+  }
+
+  //
 
   function handlePointChange(event, currentIndex) {
     let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
@@ -71,6 +110,17 @@ function ThirdWinnerPage() {
       prevData.filter((_, i) => i !== index)
     );
   }
+
+  function handleDeleteMemeber(index) {
+    setGroupWinnerThirdFormData((prevData) =>
+      prevData.filter((_, i) => i !== index)
+    );
+  }
+
+  function handleGroupSwitchToggle(value) {
+    setIsSharedGroupToggled(value);
+  }
+
   return (
     <Card>
       <CardHeader>
@@ -79,6 +129,16 @@ function ThirdWinnerPage() {
         </div>
         <div className="flex  justify-center items-center">
           <h2 className="font-subHeading text-2xl">Third Prize</h2>
+        </div>
+        <div className="flex flex-col gap-5 justify-between">
+          <div className="flex items-center  space-x-2">
+            <Switch
+              checked={isSharedGroupToggled}
+              id="group-mode"
+              onCheckedChange={(value) => handleGroupSwitchToggle(value)}
+            />
+            <Label htmlFor="group-mode">Group Item</Label>
+          </div>
         </div>
       </CardHeader>
       {thirdWinnerFormData.map((item, index) => (
@@ -100,6 +160,7 @@ function ThirdWinnerPage() {
             <div>
               <Label>Student Name</Label>
               <Input
+                required
                 type="text"
                 placeholder="Enter student name..."
                 name={`student-${index + 1}`}
@@ -108,9 +169,18 @@ function ThirdWinnerPage() {
               />
             </div>
             <div>
+              <Label>Student Code</Label>
+              <Input
+                type="text"
+                placeholder="Enter student code..."
+                name={`student-${index + 1}`}
+                value={thirdWinnerFormData[index]?.studentCode}
+                onChange={(event) => handleStudentCodeChange(event, index)}
+              />
+            </div>
+            <div>
               <Label>College Name</Label>
               <Select
-                disabled={isGroupToggled}
                 onValueChange={(value) => handleCollegeNameChange(value, index)}
                 value={thirdWinnerFormData[index]?.collegeName}
               >
@@ -131,7 +201,6 @@ function ThirdWinnerPage() {
             <div>
               <Label>Grade</Label>
               <Select
-                disabled={isGroupToggled}
                 onValueChange={(value) => handleGradeChange(value, index)}
                 value={thirdWinnerFormData[index]?.grade}
               >
@@ -152,10 +221,6 @@ function ThirdWinnerPage() {
             <div>
               <Label>Point</Label>
               <Input
-                disabled={isGroupToggled || isSharedGroupToggled}
-                className={`${
-                  isGroupToggled || isSharedGroupToggled ? "bg-gray-300" : ""
-                } `}
                 type="number"
                 placeholder="Enter point..."
                 name={`point-${index + 1}`}
@@ -163,9 +228,47 @@ function ThirdWinnerPage() {
                 onChange={(event) => handlePointChange(event, index)}
               />
             </div>
+            {isSharedGroupToggled && (
+              <div className="w-full flex justify-center items-center">
+                <Button
+                  onClick={handleAddGroupMembers}
+                  className="w-full cursor-pointer"
+                >
+                  Add Group Memebers
+                </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       ))}
+      {isSharedGroupToggled &&
+        groupWinnerThridFormData &&
+        groupWinnerThridFormData.length > 0 &&
+        groupWinnerThridFormData.map((group, index) => (
+          <CardFooter key={index}>
+            <div className="w-full">
+              <Label>Student Name</Label>
+              <div className="flex gap-2 justify-center items-center">
+                <Input
+                  required
+                  type="text"
+                  placeholder="Enter Members name..."
+                  name={`student-${index + 1}`}
+                  value={groupWinnerThridFormData[index]?.memberName}
+                  onChange={(event) =>
+                    handleGroupMemberNameChange(event, index)
+                  }
+                />
+                <Trash2Icon
+                  color="red"
+                  size={30}
+                  className="cursor-pointer"
+                  onClick={() => handleDeleteMemeber(index)}
+                />
+              </div>
+            </div>
+          </CardFooter>
+        ))}
     </Card>
   );
 }
