@@ -804,9 +804,9 @@ export const eventInitialFormData = {
 export const navBarList = [
   { title: "home", label: "HOME", link: "#home" },
   { title: "college", label: "COLLEGES", link: "#college" },
+  { title: "collegelist", label: "COLLEGE LIST", link: "#collegelist" },
   { title: "result", label: "RESULT", link: "#result" },
   { title: "achievement", label: "ACHIEVEMENTS", link: "#achievement" },
-  { title: "collegelist", label: "COLLEGE LIST", link: "#collegelist" },
 ];
 
 export const achievementOptions = [
@@ -842,6 +842,13 @@ export const achievementFormcontrol = [
     placeholder: "",
     options: collegeList,
   },
+  {
+    name: "points",
+    label: "Points",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter the Points",
+  },
 ];
 
 export const announcementFormcontrol = [
@@ -862,4 +869,5 @@ export const achievementInitialFormData = {
   achievementName: "",
   studentName: "",
   collegeName: "",
+  points: "",
 };

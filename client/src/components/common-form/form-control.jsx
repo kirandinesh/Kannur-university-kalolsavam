@@ -12,8 +12,7 @@ import { Textarea } from "../ui/textarea";
 import { AdminContext } from "@/context/admin-context";
 
 function FormControls({ formControls = [], formData, setFormData }) {
-  const { isGroupToggled } = useContext(AdminContext);
-
+  const { isGroupToggled, isSharedGroupToggled } = useContext(AdminContext);
 
   function renderComponentByType(getControlItem) {
     let element = null;
@@ -24,20 +23,28 @@ function FormControls({ formControls = [], formData, setFormData }) {
         element = (
           <Input
             disabled={
-              getControlItem.name === "groupPoints" ? !isGroupToggled : false
+              getControlItem.name === "groupPoints"
+                ? !isGroupToggled && !isSharedGroupToggled
+                : false
             }
             id={getControlItem.name}
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             type={getControlItem.type}
             value={currentControlItemValue}
-            className={`${!isGroupToggled ? "bg-gray-300" : null}`}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                [getControlItem.name]: event.target.value,
-              })
-            }
+            className={`${!isGroupToggled ? "bg-gray-300" : ""}  ${
+              isSharedGroupToggled ? "bg-white" : ""
+            }`}
+            onChange={(event) => {
+              const value = event.target.value;
+
+              if (!isNaN(value) && Number(value) >= 0) {
+                setFormData({
+                  ...formData,
+                  [getControlItem.name]: value,
+                });
+              }
+            }}
           />
         );
         break;
@@ -47,7 +54,7 @@ function FormControls({ formControls = [], formData, setFormData }) {
             disabled={
               getControlItem.name === "groupGrade" ||
               getControlItem.name === "groupCollegeName"
-                ? !isGroupToggled
+                ? !isGroupToggled || isSharedGroupToggled
                 : false
             }
             onValueChange={(value) =>
@@ -66,7 +73,9 @@ function FormControls({ formControls = [], formData, setFormData }) {
                     ? "bg-gray-300"
                     : ""
                   : ""
-              } w-full`}
+              } ${isSharedGroupToggled ? "bg-gray-300" : ""}  ${
+                getControlItem.name === "eventName" ? "bg-white" : ""
+              }  w-full`}
             >
               <SelectValue placeholder={getControlItem.label} />
             </SelectTrigger>

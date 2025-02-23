@@ -18,14 +18,13 @@ function IndividualResultTile({ result }) {
   );
 
   return (
-    <div className="w-full mx-auto ">
-      <div className="relative bg-gray-900/90 backdrop-blur-xl rounded-2xl py-8 px-3 border border-gray-800">
-        {/* Decorative Borders */}
-        <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-pink-500 rounded-tl-2xl"></div>
-        <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-red-400 rounded-tr-2xl"></div>
-        <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-yellow-500 rounded-bl-2xl"></div>
-        <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-pink-500 rounded-br-2xl"></div>
-
+    <div className="w-full xl:max-w-[400px]  mx-auto ">
+      <div className="">
+        <div className="absolute flex items-center justify-center text-white  opacity-90 rounded-xl inset-0.5 "></div>
+        <div className="absolute w-56 h-48 bg-white blur-[50px] -left-1/2 -top-1/2"></div>
+      </div>
+      <div className="relative drop-shadow-xl  overflow-hidden border-2 shadow-xl   backdrop-blur-xl rounded-2xl py-8 px-3  ">
+        <div className="absolute top-0 left-0 bottom-0 right-0   backdrop-blur-[6px] "></div>
         <div className="relative">
           <div className="flex justify-center items-center">
             <h2 className="text-xl md:text-2xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-t from-rose-700 via-red-500 to-white font-heading">
@@ -36,22 +35,23 @@ function IndividualResultTile({ result }) {
           <div className="flex flex-col gap-3">
             {/* Group College Section */}
             {result?.groupCollegeName && (
-              <div className="p-2 text-center bg-gray-900 rounded-xl shadow-lg">
-                <p className="text-gray-300 text-lg font-bold">
+              <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                <h3 className="text-lg font-semibold text-black">
                   {result?.groupCollegeName}
-                </p>
-                <p className="mt-1 font-medium text-white">
-                  <strong className="text-red-600">Group Points: </strong>
-                  <span className=" text-red-600 tracking-wider">
-                    {result?.groupPoints || "0"}
-                  </span>
-                </p>
+                </h3>
               </div>
             )}
 
             {/* First Prize Section */}
             <div className="flex flex-col  gap-2">
-              <div className="bg-gradient-to-r   from-yellow-500 to-yellow-300 p-2 rounded-2xl shadow-xl text-center">
+              <div
+                className="bg-gradient-to-r from-amber-500 to-yellow-400 p-2 rounded-2xl shadow-xl text-center"
+                style={{
+                  WebkitMask:
+                    "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                  mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                }}
+              >
                 <span className="text-white text-xl font-bold">
                   🥇 First Prize
                 </span>
@@ -65,7 +65,7 @@ function IndividualResultTile({ result }) {
                   plugins={[pluginFirst.current]}
                   onMouseEnter={pluginFirst.current.stop}
                   onMouseLeave={pluginFirst.current.play}
-                  className="w-full flex px-4   justify-center"
+                  className="w-full flex   justify-center"
                 >
                   <CarouselContent>
                     {result?.firstPrize?.map((first) => (
@@ -73,11 +73,11 @@ function IndividualResultTile({ result }) {
                         className="  flex  w-md  justify-center"
                         key={first._id}
                       >
-                        <div className="bg-black rounded-2xl w-full shadow p-3   text-center">
-                          <h3 className="text-lg font-semibold text-white">
+                        <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                          <h3 className="text-lg font-semibold text-black">
                             {first?.studentName}
                           </h3>
-                          <span className="text-gray-300">
+                          <span className="text-gray-600 font-subHeading ">
                             {first?.collegeName}
                           </span>
                         </div>
@@ -90,7 +90,14 @@ function IndividualResultTile({ result }) {
 
             {/* Second Prize Section */}
             <div className="flex flex-col gap-2">
-              <div className="bg-gradient-to-r from-gray-400 to-gray-200 p-2 rounded-2xl shadow-xl text-center">
+              <div
+                className="bg-gradient-to-r from-gray-400 to-gray-200 p-2 rounded-2xl shadow-xl text-center"
+                style={{
+                  WebkitMask:
+                    "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                  mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                }}
+              >
                 <span className="text-black text-xl font-bold">
                   🥈 Second Prize
                 </span>
@@ -104,7 +111,7 @@ function IndividualResultTile({ result }) {
                   plugins={[pluginSecond.current]}
                   onMouseEnter={pluginSecond.current.stop}
                   onMouseLeave={pluginSecond.current.play}
-                  className="w-full flex px-4  justify-center"
+                  className="w-full flex   justify-center"
                 >
                   <CarouselContent>
                     {result?.secondPrize?.map((second) => (
@@ -112,11 +119,11 @@ function IndividualResultTile({ result }) {
                         className="  flex  w-md  justify-center"
                         key={second._id}
                       >
-                        <div className="bg-black rounded-2xl w-full shadow p-3   text-center">
-                          <h3 className="text-lg font-semibold text-white">
+                        <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                          <h3 className="text-lg font-semibold text-black">
                             {second?.studentName}
                           </h3>
-                          <span className="text-gray-300">
+                          <span className="text-gray-600 font-subHeading ">
                             {second?.collegeName}
                           </span>
                         </div>
@@ -129,7 +136,14 @@ function IndividualResultTile({ result }) {
 
             {/* Third Prize Section */}
             <div className="flex flex-col gap-2 w-full">
-              <div className="bg-gradient-to-r from-orange-600 to-orange-400 p-2 rounded-2xl shadow-xl text-center">
+              <div
+                className="bg-gradient-to-r from-orange-600 to-orange-400 p-2 rounded-2xl shadow-xl text-center"
+                style={{
+                  WebkitMask:
+                    "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                  mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                }}
+              >
                 <span className="text-white text-xl font-bold">
                   🥉 Third Prize
                 </span>
@@ -143,7 +157,7 @@ function IndividualResultTile({ result }) {
                   plugins={[pluginThird.current]}
                   onMouseEnter={pluginThird.current.stop}
                   onMouseLeave={pluginThird.current.play}
-                  className="w-full flex px-4  justify-center"
+                  className="w-full flex   justify-center"
                 >
                   <CarouselContent>
                     {result?.thirdPrize?.map((third) => (
@@ -151,11 +165,11 @@ function IndividualResultTile({ result }) {
                         className="  flex  w-md  justify-center"
                         key={third._id}
                       >
-                        <div className="bg-black rounded-2xl w-full shadow p-3   text-center">
-                          <h3 className="text-lg font-semibold text-white">
+                        <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                          <h3 className="text-lg font-semibold text-black">
                             {third?.studentName}
                           </h3>
-                          <span className="text-gray-300">
+                          <span className="text-gray-600 font-subHeading ">
                             {third?.collegeName}
                           </span>
                         </div>

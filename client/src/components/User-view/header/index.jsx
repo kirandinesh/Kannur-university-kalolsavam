@@ -12,11 +12,9 @@ function UserViewHeader() {
     setActiveNav(index);
   }
 
-
-
   return (
     <header>
-      <nav className="p-5  w-full -translate-x-1/2 left-1/2  lg:flex justify-end fixed hidden sm:flex z-[1000]">
+      <nav className="p-5  w-full -translate-x-1/2 left-1/2  lg:flex justify-end fixed hidden sm:flex z-40">
         <ul className="flex gap-5  p-3 relative bg-black/50 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 rounded-2xl">
           {navBarList.map((navItem, index) => (
             <li
@@ -26,7 +24,7 @@ function UserViewHeader() {
               <a
                 className={`${
                   activeNav === index
-                    ? "before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-1 before:w-8 before:h-8 before:bg-red-500/70 before:rounded-full before:transition-all before:duration-300"
+                    ? "before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-1 before:w-8 before:h-8 before:bg-blue-500/50 before:rounded-full before:transition-all before:duration-300"
                     : "text-yellow-400 font-bold"
                 }`}
                 onClick={() => handleActiveNav(index)}
@@ -40,17 +38,19 @@ function UserViewHeader() {
         </ul>
       </nav>
 
-      <nav className="sm:hidden flex z-[1000]">
+      <nav className="sm:hidden flex z-40">
         {!isMenuOpen ? (
           <Menu
             size={30}
-            className="fixed top-3  rounded-sm  left-3  z-[1000]"
+            strokeWidth={3}
+            className="fixed top-3   rounded-sm  left-3  z-[40]"
             onClick={handleToggle}
           />
         ) : (
           <X
             size={30}
-            className="fixed top-3  left-3 z-[1000]"
+            strokeWidth={3}
+            className="fixed top-3  left-3 z-[40]"
             onClick={handleToggle}
           />
         )}
@@ -69,11 +69,12 @@ function UserViewHeader() {
                 <a
                   className={`${
                     activeNav === index
-                      ? "before:absolute before:top-1/2  before:-translate-y-1/2 before:-left-1 before:w-6 before:h-6 border-b-2 border-b-white before:bg-red-500/50 before:rounded-full before:transition-all before:duration-300"
-                      : "text-yellow-400 font-bold"
+                      ? "before:absolute before:top-1/2  before:-translate-y-1/2 before:-left-1 before:w-6 before:h-6 border-b-2 border-b-white before:bg-blue-500/50 before:rounded-full before:transition-all before:duration-300"
+                      : "text-blue-400 font-bold"
                   }font-extrabold  tracking-widest`}
                   onClick={() => handleActiveNav(index)}
                   href={`#${navItem.title}`}
+                  style={{ color: "white" }}
                 >
                   {navItem.label}
                 </a>

@@ -42,6 +42,7 @@ export default function AdminProvider({ children }) {
   const [currentEventId, setcurrentEventId] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [isGroupToggled, setIsGroupToggled] = useState(false);
+  const [isSharedGroupToggled, setIsSharedGroupToggled] = useState(false);
   const [achieventFormData, setAchieventFormData] = useState(
     achievementInitialFormData
   );
@@ -87,6 +88,8 @@ export default function AdminProvider({ children }) {
         setAnnounceFormData,
         announcementList,
         setAnnouncementList,
+        isSharedGroupToggled,
+        setIsSharedGroupToggled,
       }}
     >
       {children}

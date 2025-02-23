@@ -19,8 +19,12 @@ import { Trash2Icon } from "lucide-react";
 import { useContext } from "react";
 
 function SecondWinnerPage() {
-  const { secondWinnerFormData, setSecondWinnerFormData, isGroupToggled } =
-    useContext(AdminContext);
+  const {
+    secondWinnerFormData,
+    setSecondWinnerFormData,
+    isGroupToggled,
+    isSharedGroupToggled,
+  } = useContext(AdminContext);
   function handleNewStudents() {
     setSecondWinnerFormData([
       ...secondWinnerFormData,
@@ -150,8 +154,10 @@ function SecondWinnerPage() {
             <div>
               <Label>Point</Label>
               <Input
-                disabled={isGroupToggled}
-                className={`${isGroupToggled ? "bg-gray-300" : ""}`}
+                disabled={isGroupToggled || isSharedGroupToggled}
+                className={`${
+                  isGroupToggled || isSharedGroupToggled ? "bg-gray-300" : ""
+                } `}
                 type="number"
                 placeholder="Enter point..."
                 name={`point-${index + 1}`}

@@ -5,17 +5,16 @@ import AdminAddAchievementPage from "@/pages/Admin-pages/Achievement-Page/add-ac
 import AnnouncementPage from "@/pages/Admin-pages/Announcement-page";
 import EventList from "@/pages/Admin-pages/Event-List-Page";
 import AdminIndividualReusltPage from "@/pages/Admin-pages/IndividualResult-Page";
-import AdminResultPage from "@/pages/Admin-pages/Result-page";
 import WinnerListPage from "@/pages/Admin-pages/winner-page/winnerList-Page";
 
 import {
   BarChart,
-  Book,
   LogOut,
   MenuIcon,
   Trophy,
   FileBadge,
   Megaphone,
+  Play,
 } from "lucide-react";
 import { useContext, useState } from "react";
 
@@ -34,7 +33,7 @@ function AdminMainContent() {
     },
     {
       label: "Event",
-      icon: BarChart,
+      icon: Play,
       value: "event",
       component: <EventList />,
     },
@@ -79,7 +78,7 @@ function AdminMainContent() {
           <nav>
             {menuItems.map((menuItem) => (
               <Button
-                className="w-full justify-start mb-2 "
+                className="w-full justify-start mb-2 font-heading"
                 key={menuItem.value}
                 variant={activeTab === menuItem.value ? "secondary" : "ghost"}
                 onClick={
@@ -107,7 +106,7 @@ function AdminMainContent() {
           <ul className="flex flex-col gap-4 p-5 relative bg-black/40 bg-clip-padding backdrop-filter backdrop-blur-sm backdrop-saturate-100 backdrop-contrast-125 rounded-2xl">
             {menuItems.map((menuItem) => (
               <Button
-                className="w-full justify-start mb-2 "
+                className="w-full justify-start mb-2 font-heading font-semibold "
                 key={menuItem.value}
                 variant={activeTab === menuItem.value ? "secondary" : "ghost"}
                 onClick={

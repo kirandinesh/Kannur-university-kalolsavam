@@ -12,14 +12,22 @@
   --font-subHeading: "Kanit", serif;
   --font-texts: "Nunito";
   --font-title: "Mouse Memoirs", serif;
-  --animate-loop: loop-scroll 20s linear infinite;
-
+  --animate-loop: loop-scroll 16s linear infinite;
+  --animate-shine: shine 3s infinite linear;
   @keyframes loop-scroll {
     from {
       transform: translateX(0);
     }
     to {
       transform: translate(-100%);
+    }
+  }
+  @keyframes shine {
+    0% {
+      background-position: 0;
+    }
+    100% {
+      background-position: 180px;
     }
   }
 }
@@ -121,6 +129,16 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+.connect {
+  text-decoration: none;
+  font-family: sans-serif;
+  background-image: linear-gradient(to right, #4e4c4c 0, #fff 10%, #868686 20%);
+  background-size: 180px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  white-space: nowrap;
 }
 
 @layer base {

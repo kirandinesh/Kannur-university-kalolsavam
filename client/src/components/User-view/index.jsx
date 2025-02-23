@@ -2,6 +2,8 @@ import UserViewHeader from "./header";
 import UserViewHomePage from "@/pages/Users-page/home";
 import { lazy, Suspense } from "react";
 import { Skeleton } from "../ui/skeleton";
+import Footer from "../Footer/Footer";
+import PreLoader from "../PreLoader/PreLoader";
 
 const UserViewCollegePage = lazy(() =>
   import("@/pages/Users-page/college/collegePage")
@@ -20,7 +22,8 @@ const AchievementList = lazy(() =>
 );
 function UserCommonLayout() {
   return (
-    <div className="w-screen min-h-screen p-2">
+    <div className="w-screen min-h-screen p-2 overflow-hidden">
+      <PreLoader />
       <div className="flex">
         <div>
           <UserViewHeader />
@@ -42,6 +45,7 @@ function UserCommonLayout() {
           <AchievementList />
         </Suspense>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -114,6 +114,9 @@ const AdminAddAchievementPage = () => {
                       <div className="text-gray-400 font-semibold font-texts text-base mt-2">
                         <p>{achievement?.collegeName}</p>
                       </div>
+                      <div className="text-gray-400 font-semibold font-texts text-base mt-2">
+                        <p>{achievement?.points}</p>
+                      </div>
                     </div>
                     <div className="flex justify-between px-2 pb-5">
                       <div

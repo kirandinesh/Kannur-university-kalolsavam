@@ -10,7 +10,6 @@ function EventStatusComponent() {
   async function handleEvent() {
     try {
       const response = await fetchAllEvents();
-  
 
       if (response?.success && Array.isArray(response?.data)) {
         const ongoingEvents = response.data.filter(
@@ -32,7 +31,7 @@ function EventStatusComponent() {
   }, []);
 
   return (
-    <section id="eventstatus" className=" overflow-hidden  sm:pt-20 ">
+    <section id="eventstatus" className=" overflow-hidden  mt-10 sm:pt-20 ">
       <div>
         <div className="flex justify-center items-center sm:mt-8 sm:mb-10">
           <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">

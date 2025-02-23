@@ -5,6 +5,7 @@ const achievementSchema = new mongoose.Schema(
     achievementName: { type: String, required: true, trim: true },
     studentName: { type: String, required: true, trim: true },
     collegeName: { type: String, required: true, trim: true },
+    points: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

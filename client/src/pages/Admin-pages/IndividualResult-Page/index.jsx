@@ -22,6 +22,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Eraser } from "lucide-react";
 
 function AdminIndividualReusltPage() {
   const {
@@ -37,8 +38,11 @@ function AdminIndividualReusltPage() {
     setIsGroupToggled,
     currentWinnerUpdateEditedId,
     setcurrentWinnerUpdateEditedId,
+    isSharedGroupToggled,
+    setIsSharedGroupToggled,
   } = useContext(AdminContext);
   const navigate = useNavigate();
+
   async function handleCreateWinnerResult(event) {
     event.preventDefault();
     const winnerFinalFormData = {
@@ -67,7 +71,9 @@ function AdminIndividualReusltPage() {
   function handleGroupItemToggle(value) {
     setIsGroupToggled(value);
   }
-
+  function handleSharedGroupItemToggle(value) {
+    setIsSharedGroupToggled(value);
+  }
   async function getWinnerByid() {
     const response = await fetchWinnerDetailsById(currentWinnerUpdateEditedId);
     if (response?.success) {
@@ -77,7 +83,7 @@ function AdminIndividualReusltPage() {
         acc[key] = response?.data[key] || publishResultInitialFormData[key];
         return acc;
       }, {});
- 
+
       setPublishFormData(setWinnerFormData);
       setWinnerFirstFormData(response?.data?.firstPrize);
       setSecondWinnerFormData(response?.data?.secondPrize);
@@ -85,29 +91,56 @@ function AdminIndividualReusltPage() {
     }
   }
 
+  function handleCancel() {
+    setcurrentWinnerUpdateEditedId(null);
+    resetForm();
+    navigate("/adminhome");
+  }
+
+  function resetForm() {
+    setPublishFormData(publishResultInitialFormData);
+    setWinnerFirstFormData(winnerResultFirstInitialFormData);
+    setSecondWinnerFormData(winnerResultSecondInitialFormData);
+    setThirdWinnerFormData(winnerResultThirdInitialFormData);
+  }
+
+  function handleEraseForm() {
+    resetForm();
+    setIsGroupToggled(false);
+    setIsSharedGroupToggled(false);
+  }
+
   useEffect(() => {
     if (currentWinnerUpdateEditedId !== null) getWinnerByid();
   }, [currentWinnerUpdateEditedId]);
+  console.log(isSharedGroupToggled);
   return (
     <Card>
       <CardHeader>
         <div>
           <h1 className="text-3xl font-bold mb-2">Winner Publish</h1>
+          <Eraser color="red" onClick={handleEraseForm} />
         </div>
         <div className="flex justify-between items-center space-x-2 mb-2 cursor-pointer">
-          <div>
+          <div className="flex items-center justify-center gap-2">
             <Switch
+              disabled={isSharedGroupToggled}
               id="group-mode"
               onCheckedChange={(value) => handleGroupItemToggle(value)}
             />
             <Label htmlFor="group-mode">Group Item</Label>
           </div>
+          <div className="flex items-center justify-center gap-2">
+            <Switch
+              disabled={isGroupToggled}
+              id="group-mode"
+              onCheckedChange={(value) => handleSharedGroupItemToggle(value)}
+            />
+            <Label htmlFor="group-mode">Shared Group Item</Label>
+          </div>
           {currentWinnerUpdateEditedId ? (
             <div>
-              <Button
-                onClick={() => navigate("/adminhome")}
-                variant="destructive"
-              >
+              <Button onClick={handleCancel} variant="destructive">
                 Cancel
               </Button>
             </div>

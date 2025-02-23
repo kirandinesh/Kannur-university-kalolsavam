@@ -1,7 +1,7 @@
 const AchievementModel = require("../../models/achievements.model");
 const addNewAchievement = async (req, res) => {
   try {
-    const { achievementName, studentName, collegeName } = req.body;
+    const { achievementName, studentName, collegeName, points } = req.body;
 
     if (!achievementName || !studentName) {
       return res.status(400).json({
@@ -25,6 +25,7 @@ const addNewAchievement = async (req, res) => {
       achievementName,
       studentName,
       collegeName,
+      points,
     });
     await newAchievement.save();
 

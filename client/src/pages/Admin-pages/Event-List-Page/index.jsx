@@ -69,6 +69,7 @@ function EventList() {
     if (response?.success) {
       setcurrentEventId(null);
       setEventList([...eventList, response?.data]);
+      getAllEvents();
     }
   }
 
@@ -87,7 +88,6 @@ function EventList() {
   useEffect(() => {
     getAllEvents();
   }, []);
-
 
   return (
     <Card>

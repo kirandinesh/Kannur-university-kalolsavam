@@ -17,11 +17,10 @@ function AchievementList() {
     getAllAchievements();
   }, []);
 
-
   return (
     <section id="achievement" className=" overflow-hidden pt-10 sm:pt-20 ">
       <div className="flex justify-center items-center sm:mt-8 sm:mb-10">
-        <h1 className="text-3xl uppercase font-bold sm:text-4xl md:text-5xl">
+        <h1 className="text-xl  uppercase font-bold sm:text-4xl md:text-5xl">
           Individual Achievements
         </h1>
       </div>
