@@ -37,7 +37,6 @@ function FormControls({ formControls = [], formData, setFormData }) {
             } bg-white`}
             onChange={(event) => {
               const value = event.target.value;
-
               setFormData({
                 ...formData,
                 [getControlItem.name]: value,
