@@ -35,7 +35,7 @@ function UserViewHomePage() {
       id="home"
     >
       {/* Event Date */}
-      <div className="absolute z-30 font-subHeading font-semibold px-6 py-2 lg:top-0  flex items-center gap-3 rounded-full top-4 left-1/2 transform -translate-x-1/2  text-black ">
+      <div className="absolute z-30 font-subHeading font-semibold px-6 py-2 lg:top-1  flex items-center gap-3 rounded-full top-4 left-1/2 transform -translate-x-1/2  text-black ">
         <span className="connect font-subHeading animate-shine font-bold text-xl sm:text-2xl xl:text-xl md:text-2xl lg:text-3xl 2xl:text-2xl">
           FEB 24 - 28
         </span>
