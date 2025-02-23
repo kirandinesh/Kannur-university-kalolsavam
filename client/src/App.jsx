@@ -23,16 +23,7 @@ function App() {
 
   return (
     <Routes>
-      <Route
-        path="/adminlogin"
-        element={
-          <RouteGuard
-            element={<AuthPage />}
-            authenticated={auth?.authenticate}
-            user={auth?.user}
-          />
-        }
-      />
+      <Route path="/adminlogin" element={<AuthPage />} />
 
       <Route path="/" element={<UserCommonLayout />} />
 
