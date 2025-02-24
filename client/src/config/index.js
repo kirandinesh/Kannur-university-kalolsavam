@@ -142,13 +142,13 @@ export const eventOptions = [
   { id: "Debate-English", label: "Debate English" },
   { id: "Debate-Malayalam", label: "Debate Malayalam" },
   { id: "Kaavyakeli", label: "Kaavyakeli" },
-  { id: "Kavithadatapanam-Arabic", label: "Kavithadatapanam Arabic" },
-  { id: "Kavithadatapanam-English", label: "Kavithadatapanam English" },
-  { id: "Kavithadatapanam-Hindi", label: "Kavithadatapanam Hindi" },
-  { id: "Kavithadatapanam-Kannada", label: "Kavithadatapanam Kannada" },
-  { id: "Kavithadatapanam-Malayalam", label: "Kavithadatapanam Malayalam" },
-  { id: "Kavithadatapanam-Sanskrit", label: "Kavithadatapanam Sanskrit" },
-  { id: "Kavithadatapanam-Urdu", label: "Kavithadatapanam Urdu" },
+  { id: "Kavithaalabanam-Arabic", label: "Kavithaalabanam Arabic" },
+  { id: "Kavithaalabanam-English", label: "Kavithaalabanam English" },
+  { id: "Kavithaalabanam-Hindi", label: "Kavithaalabanam Hindi" },
+  { id: "Kavithaalabanam-Kannada", label: "Kavithaalabanam Kannada" },
+  { id: "Kavithaalabanam-Malayalam", label: "Kavithaalabanam Malayalam" },
+  { id: "Kavithaalabanam-Sanskrit", label: "Kavithaalabanam Sanskrit" },
+  { id: "Kavithaalabanam-Urdu", label: "Kavithaalabanam Urdu" },
   { id: "Kavitharachana-Arabic", label: "Kavitharachana Arabic" },
   { id: "Kavitharachana-English", label: "Kavitharachana English" },
   { id: "Kavitharachana-Hindi", label: "Kavitharachana Hindi" },
@@ -241,391 +241,162 @@ export const eventOptions = [
 ];
 
 export const collegeList = [
+  { id: "Payyannur-College", label: "Payyannur College" },
+  { id: "Sree-Narayana-College", label: "Sree Narayana College" },
+  { id: "NAM-College-Kallikandy", label: "N.A.M. College Kallikandy" },
+  { id: "Mangattuparamba-Campus", label: "Mangattuparamba Campus" },
+  { id: "Pazhassi-Raja-NSS-College", label: "Pazhassi Raja N.S.S. College" },
   {
-    id: "Administrative-Unit-Mangattuparamba",
-    label: "Administrative Unit, Mangattuparamba",
+    id: "Govt-Brennen-College-Dharmadam",
+    label: "Govt. Brennen College Dharmadam",
   },
+  { id: "Sir-Syed-College", label: "Sir Syed College" },
+  { id: "SES-College", label: "S.E.S. College" },
   {
-    id: "Al-Badar-Special-College-Payyannur",
-    label: "Al-Badar Special College, Payyannur",
-  },
-  {
-    id: "Anandatheertha-Campus-Payyannur",
-    label: "Anandatheertha Campus, Payyannur",
-  },
-  {
-    id: "Arts-&-Science-College-for-Women-Chala",
-    label: "Arts & Science College for Women, Chala",
-  },
-  {
-    id: "Arts-&-Science-College-Kalliasseri",
-    label: "Arts & Science College, Kalliasseri",
-  },
-  {
-    id: "Arts-&-Science-College-Mathil",
-    label: "Arts & Science College, Mathil",
-  },
-  {
-    id: "Arts-&-Science-College-Muttanur",
-    label: "Arts & Science College, Muttanur",
-  },
-  { id: "B.Ed-College-Palangad", label: "B.Ed College, Palangad" },
-  {
-    id: "Beja-Model-College-of-Arts-&-Science-Sankanamoola",
-    label: "Beja Model College of Arts & Science, Sankanamoola",
-  },
-  {
-    id: "Bosco-Arts-&-Science-College-Angadikadavu",
-    label: "Bosco Arts & Science College, Angadikadavu",
-  },
-  { id: "Bosco-College-Angadikadavu", label: "Bosco College, Angadikadavu" },
-  { id: "Brennen-College-Thalassery", label: "Brennen College, Thalassery" },
-  {
-    id: "C.K.-Nair-Arts-&-Management-College-Kanhangad",
-    label: "C.K. Nair Arts & Management College, Kanhangad",
-  },
-  { id: "Campus-Chala-Vidyanagar", label: "Campus, Chala, Vidyanagar" },
-  {
-    id: "College-of-Applied-Science-Cheemeni",
-    label: "College of Applied Science, Cheemeni",
-  },
-  {
-    id: "College-of-Applied-Science-Kuthuparamba",
-    label: "College of Applied Science, Kuthuparamba",
-  },
-  {
-    id: "College-of-Applied-Science-Kuttur",
-    label: "College of Applied Science, Kuttur",
-  },
-  {
-    id: "College-of-Applied-Science-Manjeshwar",
-    label: "College of Applied Science, Manjeshwar",
-  },
-  {
-    id: "College-of-Applied-Science-Neruvambram",
-    label: "College of Applied Science, Neruvambram",
-  },
-  {
-    id: "College-of-Applied-Science-Pattuvam",
-    label: "College of Applied Science, Pattuvam",
-  },
-  {
-    id: "College-of-Applied-Science-Pinarayi",
-    label: "College of Applied Science, Pinarayi",
-  },
-  {
-    id: "College-of-Arts-&-Science-Mayyil",
-    label: "College of Arts & Science, Mayyil",
-  },
-  {
-    id: "College-of-Arts-&-Science-Perla",
-    label: "College of Arts & Science, Perla",
-  },
-  { id: "College-Peringome", label: "College, Peringome" },
-  { id: "College-Thalassery-Chokli", label: "College, Thalassery, Chokli" },
-  {
-    id: "Co-operative-Arts-&-Science-College-Madayi",
-    label: "Co-operative Arts & Science College, Madayi",
-  },
-  {
-    id: "Darul-Irshad-Arabic-College-Paral",
-    label: "Darul Irshad Arabic College, Paral",
-  },
-  {
-    id: "De-Paul-Arts-&-Science-College-Edathotty",
-    label: "De Paul Arts & Science College, Edathotty",
-  },
-  {
-    id: "Deenar-College-of-Graduate-Studies-Seethangoli",
-    label: "Deenar College of Graduate Studies, Seethangoli",
-  },
-  {
-    id: "Devamatha-Arts-&-Science-College-Paisakary",
-    label: "Devamatha Arts & Science College, Paisakary",
-  },
-  {
-    id: "Dr.-B.R.-Ambedkar-Arts-&-Science-College-Periye",
-    label: "Dr. B.R. Ambedkar Arts & Science College, Periye",
-  },
-  {
-    id: "Dr.-B.R.-Ambedkar-College-of-Education-Periye",
-    label: "Dr. B.R. Ambedkar College of Education, Periye",
-  },
-  {
-    id: "Dr.-Janaki-Ammal-Campus-Palayad",
-    label: "Dr. Janaki Ammal Campus, Palayad",
-  },
-  {
-    id: "Dr.-P.K.-Rajan-Memorial-Campus-Nileshwaram",
-    label: "Dr. P.K. Rajan Memorial Campus, Nileshwaram",
-  },
-  {
-    id: "E.K.-Nayanar-Memorial-Government-College-Elerithattu",
-    label: "E.K. Nayanar Memorial Government College, Elerithattu",
-  },
-  {
-    id: "EMS-Memorial-College-of-Applied-Science-Iritty",
-    label: "EMS Memorial College of Applied Science, Iritty",
-  },
-  {
-    id: "Government-Arts-&-Science-College-Kinanoor",
-    label: "Government Arts & Science College, Kinanoor",
-  },
-  {
-    id: "Government-Arts-&-Science-College-Uduma",
-    label: "Government Arts & Science College, Uduma",
-  },
-  {
-    id: "Government-Brennen-College-of-Teacher-Education-Thalassery",
-    label: "Government Brennen College of Teacher Education, Thalassery",
-  },
-  {
-    id: "Government-College-Kasaragod",
-    label: "Government College, Kasaragod",
-  },
-  {
-    id: "Government-College-Mananthavady",
-    label: "Government College, Mananthavady",
-  },
-  {
-    id: "Government-Women's-College-Kannur",
-    label: "Government Women's College, Kannur",
-  },
-  {
-    id: "GPM-Government-College-Manjeshwar",
-    label: "GPM Government College, Manjeshwar",
-  },
-  {
-    id: "Greenwoods-Arts-&-Science-College-Kasaragod",
-    label: "Greenwoods Arts & Science College, Kasaragod",
-  },
-  { id: "Ideal-Arabic-College-Uliyil", label: "Ideal Arabic College, Uliyil" },
-  {
-    id: "Indian-Institute-of-Handloom-Technology-Kannur",
-    label: "Indian Institute of Handloom Technology, Kannur",
-  },
-  {
-    id: "Institute-of-Management-Studies-Munnad",
-    label: "Institute of Management Studies, Munnad",
-  },
-  {
-    id: "Institute-of-Technology-Chala",
-    label: "Institute of Technology, Chala",
-  },
-  {
-    id: "Jaybees-Training-College-of-B.Ed-Mathamangalam-Kannur",
-    label: "Jaybees Training College of B.Ed, Mathamangalam, Kannur",
-  },
-  {
-    id: "Kannur-University-Mananthavady-Campus",
-    label: "Kannur University Mananthavady Campus",
-  },
-  {
-    id: "Keyi-Sahib-Training-College-Thaliparamba",
-    label: "Keyi Sahib Training College, Thaliparamba",
-  },
-  {
-    id: "Khansa-Women's-College-for-Advanced-Studies-Kumbla",
-    label: "Khansa Women's College for Advanced Studies, Kumbla",
-  },
-  {
-    id: "Lasya-College-of-Fine-Arts-Pilathara",
-    label: "Lasya College of Fine Arts, Pilathara",
-  },
-  {
-    id: "Mahatma-College-of-Education-Nileshwar",
-    label: "Mahatma College of Education, Nileshwar",
-  },
-  {
-    id: "Mahatma-Gandhi-Arts-&-Science-College-Chendayad",
-    label: "Mahatma Gandhi Arts & Science College, Chendayad",
+    id: "Don-Bosco-Arts-Science-College",
+    label: "Don Bosco Arts & Science College",
   },
   {
     id: "Mahatma-Gandhi-College-Iritty",
-    label: "Mahatma Gandhi College, Iritty",
+    label: "Mahatma Gandhi College Iritty",
+  },
+  { id: "Govt-College-Kasaragod", label: "Govt. College Kasaragod" },
+  {
+    id: "Wadihuda-Institute-Of-Research-And-Advanced-Studie",
+    label: "Wadihuda Institute Of Research And Advanced Studie",
   },
   {
-    id: "Malabar-B.Ed-Training-College-Peravoor",
-    label: "Malabar B.Ed Training College, Peravoor",
+    id: "Institute-of-Public-Policy-and-Leadership-Karimbam-Taliparamba",
+    label: "Institute of Public Policy and Leadership, Karimbam, Taliparamba",
   },
   {
-    id: "Mar-Thoma-College-for-the-Hearing-Impaired-Cherkala",
-    label: "Mar Thoma College for the Hearing Impaired, Cherkala",
+    id: "SUM-College-Of-Teacher-Education",
+    label: "S.U.M. College Of Teacher Education",
   },
   {
-    id: "Mary-Matha-Arts-&-Science-College-Alakode",
-    label: "Mary Matha Arts & Science College, Alakode",
+    id: "Govt-Brennen-College-Of-Teacher-Education",
+    label: "Govt. Brennen College Of Teacher Education",
   },
   {
-    id: "Mary-Matha-Arts-&-Science-College-Mananthavady",
+    id: "Peoples-Co-Operative-Arts-Science-College",
+    label: "Peoples Co-Operative Arts & Science College",
+  },
+  {
+    id: "Nehru-Arts-And-Science-College",
+    label: "Nehru Arts And Science College",
+  },
+  { id: "Government-College-Peringome", label: "Government College Peringome" },
+  { id: "KMM-Govt-Womens-College", label: "K.M.M. Govt. Women’s College" },
+  {
+    id: "Kannur-University-School-Of-Legal-Studies-Manjeshwaram-Campus",
+    label: "Kannur University School Of Legal Studies, Manjeshwaram Campus",
+  },
+  {
+    id: "Zainab-Memorial-BEd-Centre-Cherkala-North",
+    label: "Zainab Memorial B.Ed. Centre, Cherkala North",
+  },
+  {
+    id: "Sir-Syed-Institute-For-Technical-Studies",
+    label: "Sir Syed Institute For Technical Studies",
+  },
+  {
+    id: "Dr-Ambedkar-College-Of-Education-Sreesailam",
+    label: "Dr. Ambedkar College Of Education, Sreesailam",
+  },
+  {
+    id: "Nusrathul-Islam-Arabic-College",
+    label: "Nusrathul Islam Arabic College",
+  },
+  { id: "Nirmalagiri-College", label: "Nirmalagiri College" },
+  {
+    id: "MECF-College-Of-Teacher-Education",
+    label: "MECF College Of Teacher Education",
+  },
+  {
+    id: "Malabar-Islamic-Complex-Arts-Science-College",
+    label: "Malabar Islamic Complex- Arts & Science College",
+  },
+  {
+    id: "Kuniya-College-Of-Arts-And-Science-Kasaragod",
+    label: "KUNIYA College Of Arts And Science, Kasaragod",
+  },
+  { id: "Thalassery-Campus-Palayad", label: "Thalassery Campus, Palayad" },
+  {
+    id: "Co-Operative-Arts-Science-College-Madai",
+    label: "Co-Operative Arts & Science College, Madai",
+  },
+  {
+    id: "Mary-Matha-Arts-Science-College-Mananthavady",
     label: "Mary Matha Arts & Science College, Mananthavady",
   },
+  { id: "Keyi-Sahib-Training-College", label: "Keyi Sahib Training College" },
+  { id: "St-Marys-College-Bela", label: "St. Mary's College, Bela" },
+  { id: "Govt-College-Mananthavady", label: "Govt. College Mananthavady" },
+  { id: "University-Campus-Kasaragod", label: "University Campus, Kasaragod" },
   {
-    id: "MECF-College-of-Teacher-Education-Peringathur",
-    label: "MECF College of Teacher Education, Peringathur",
-  },
-  {
-    id: "Memorial-College-of-Teacher-Education",
-    label: "Memorial College of Teacher Education",
-  },
-  { id: "MES-College-Kuthuparamba", label: "MES College, Kuthuparamba" },
-  {
-    id: "MIC-Arts-&-Science-College-Chattanchal",
-    label: "MIC Arts & Science College, Chattanchal",
-  },
-  {
-    id: "MM-Knowledge-Arts-&-Science-College-Karakkundu",
-    label: "MM Knowledge Arts & Science College, Karakkundu",
-  },
-  {
-    id: "Model-College-IHRD-Madikai-Nileshwaram",
-    label: "Model College, IHRD Madikai, Nileshwaram",
-  },
-  {
-    id: "Morazha-Co-operative-Arts-&-Science-College-Morazha",
-    label: "Morazha Co-operative Arts & Science College, Morazha",
-  },
-  {
-    id: "Naher-Arts-&-Science-College-Kanhirode",
-    label: "Naher Arts & Science College, Kanhirode",
-  },
-  { id: "NAM-College-Kallikkandy", label: "NAM College, Kallikkandy" },
-  {
-    id: "Narayana-Arts-&-Science-College-Kottappara",
-    label: "Narayana Arts & Science College, Kottappara",
-  },
-  {
-    id: "Narayana-College-of-Management-Studies-Periya",
-    label: "Narayana College of Management Studies, Periya",
+    id: "Gurudev-Arts-Science-College",
+    label: "Gurudev Arts & Science College",
   },
   {
     id: "Navajyothi-College-Cherupuzha",
     label: "Navajyothi College, Cherupuzha",
   },
   {
-    id: "Nehru-Arts-&-Science-College-Kanhangad",
-    label: "Nehru Arts & Science College, Kanhangad",
-  },
-  { id: "NEST-Institute-Payyannur", label: "NEST Institute, Payyannur" },
-  {
-    id: "Niles-Co-operative-Arts-&-Science-College-Munnad",
-    label: "Niles Co-operative Arts & Science College, Munnad",
+    id: "Swami-Ananthatheertha-Campus-Payyannur",
+    label: "Swami Ananthatheertha Campus, Payyannur",
   },
   {
-    id: "Nirmalagiri-College-Nirmalagiri",
-    label: "Nirmalagiri College, Nirmalagiri",
+    id: "EK-Nayanar-Memorial-Govt-College-Elerithattu",
+    label: "E.K. Nayanar Memorial Govt. College, Elerithattu",
   },
   {
-    id: "Nusrathul-Islam-Arabic-College-Kadavathur",
-    label: "Nusrathul Islam Arabic College, Kadavathur",
+    id: "Lasya-College-Of-Fine-Arts-Pilathara",
+    label: "Lasya College Of Fine Arts, Pilathara",
   },
   {
-    id: "OUR-College-of-Applied-Sciences-Thimiri",
-    label: "OUR College of Applied Sciences, Thimiri",
+    id: "Taliparamba-Arts-Science-College",
+    label: "Taliparamba Arts & Science College",
   },
   {
-    id: "P.K.-Kalan-Memorial-College-of-Applied-Science-Mananathavady",
-    label: "P.K. Kalan Memorial College of Applied Science, Mananthavady",
+    id: "Dr-P-K-Rajan-Memorial-Campus-Nileshwaram",
+    label: "Dr. P.K. Rajan Memorial Campus, Nileshwaram",
   },
   {
-    id: "Payyanur-Arabic-College-Kasaragod",
-    label: "Payyanur Arabic College, Kasaragod",
-  },
-  { id: "Payyanur-College-Payyanur", label: "Payyanur College, Payyanur" },
-  {
-    id: "Pilathara-Co-operative-Arts-&-Science-College-Pilathara",
-    label: "Pilathara Co-operative Arts & Science College, Pilathara",
+    id: "Department-Of-Teacher-Education-Mananthavady",
+    label: "Department Of Teacher Education, Mananthavady",
   },
   {
-    id: "PKM-College-of-Education-Madampam",
-    label: "PKM College of Education, Madampam",
-  },
-  { id: "PRNSS-College-Mattanur", label: "PRNSS College, Mattanur" },
-  {
-    id: "Rajeev-Memorial-College-of-Teacher-Education-Kavumpadi",
-    label: "Rajeev Memorial College of Teacher Education, Kavumpadi",
+    id: "DR-APJ-Abdul-Kalam-College-Of-Professional-Studies-Ulikkal",
+    label: "DR APJ Abdul Kalam College Of Professional Studies, Ulikkal",
   },
   {
-    id: "Salafi-B.Ed.-College-Koodali",
-    label: "Salafi B.Ed. College, Koodali",
+    id: "Malik-Deenar-Institute-Of-Management-Studies",
+    label: "Malik Deenar Institute Of Management Studies",
   },
   {
-    id: "School-of-Legal-Studies-Manjeshwar-Campus-Kasaragod",
-    label: "School of Legal Studies, Manjeshwar Campus, Kasaragod",
-  },
-  { id: "SES-College-Sreekandapuram", label: "SES College, Sreekandapuram" },
-  {
-    id: "Sharaf-Arts-&-Science-College-Padne",
-    label: "Sharaf Arts & Science College, Padne",
+    id: "Government-College-Thalassery",
+    label: "Government College Thalassery",
   },
   {
-    id: "Sibga-Institute-of-Advanced-Studies-Irikkur",
-    label: "Sibga Institute of Advanced Studies, Irikkur",
+    id: "College-For-Costume-And-Fashion-Designing-Thottada",
+    label: "College For Costume And Fashion Designing, Thottada",
   },
   {
-    id: "Sir-Syed-College-Taliparamba",
-    label: "Sir Syed College, Taliparamba",
+    id: "Amsteck-Arts-Science-College-Kalliassery",
+    label: "Amsteck Arts & Science College, Kalliassery",
   },
   {
-    id: "Sir-Syed-Institute-for-Technical-Studies-Karimbam",
-    label: "Sir Syed Institute for Technical Studies, Karimbam",
+    id: "Sanatana-Arts-Science-College-Parakkalay",
+    label: "Sanatana Arts & Science College, Parakkalay",
   },
   {
-    id: "SNDP-Yogam-Arts-&-Science-College-Kalichanadukkam",
-    label: "SNDP Yogam Arts & Science College, Kalichanadukkam",
+    id: "SUNRISE-College-Of-Advanced-Studies-Kuttur",
+    label: "SUNRISE College Of Advanced Studies, Kuttur",
   },
+  { id: "Test-College", label: "Test College" },
   {
-    id: "Sree-Narayana-College-Thottada-Kannur",
-    label: "Sree Narayana College, Thottada, Kannur",
-  },
-  {
-    id: "Sree-Narayana-Guru-College-of-Advanced-Studies-Thottada",
-    label: "Sree Narayana Guru College of Advanced Studies, Thottada",
-  },
-  {
-    id: "Sree-Narayana-Guru-College-of-Arts-&-Science-Veerpad-Iritty",
-    label: "Sree Narayana Guru College of Arts & Science, Veerpad, Iritty",
-  },
-  {
-    id: "St.-Joseph's-College-Pilathara",
-    label: "St. Joseph's College, Pilathara",
-  },
-  {
-    id: "St.-Jude's-Arts-&-Science-College-Vellarikkundu",
-    label: "St. Jude's Arts & Science College, Vellarikkundu",
-  },
-  {
-    id: "St.-Mary's-Arts-&-Science-College-Cherupanathady",
-    label: "St. Mary's Arts & Science College, Cherupanathady",
-  },
-  {
-    id: "St.-Pius-X-College-Rajapuram",
-    label: "St. Pius X College, Rajapuram",
-  },
-  {
-    id: "SUM-College-of-Teacher-Education-Mamba",
-    label: "SUM College of Teacher Education, Mamba",
-  },
-  {
-    id: "Thaliparamba-Arts-&-Science-College-Kanhirangad",
-    label: "Thaliparamba Arts & Science College, Kanhirangad",
-  },
-  {
-    id: "Trikaripur-Arts-&-Science-College-Elambachi",
-    label: "Trikaripur Arts & Science College, Elambachi",
-  },
-  {
-    id: "Vimal-Jyothi-Institute-of-Management-&-Research-Chemperi",
-    label: "Vimal Jyothi Institute of Management & Research, Chemperi",
-  },
-  { id: "WIRAS-Vilayancode", label: "WIRAS, Vilayancode" },
-  {
-    id: "WMO-Imam-Gazzali-Arts-&-Science-College-Koolivayal",
-    label: "WMO Imam Gazzali Arts & Science College, Koolivayal",
-  },
-  {
-    id: "Tellicherry-Institute-of-Advanced-Studies",
-    label: "Tellicherry Institute of Advanced Studies",
+    id: "People-Institute-Of-Management-Studies-Munnad",
+    label: "People Institute Of Management Studies, Munnad",
   },
 ];
 

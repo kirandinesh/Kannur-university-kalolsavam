@@ -20,6 +20,7 @@ const IndividualResultSection = lazy(() =>
 const AchievementList = lazy(() =>
   import("@/pages/Users-page/achievement-page/achievementList")
 );
+
 function UserCommonLayout() {
   return (
     <div className="w-screen min-h-screen p-2 overflow-hidden">
