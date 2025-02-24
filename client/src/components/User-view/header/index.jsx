@@ -38,17 +38,19 @@ function UserViewHeader() {
         </ul>
       </nav>
 
-      <nav className="sm:hidden flex z-40">
+      <nav className="sm:hidden  flex z-40">
         {!isMenuOpen ? (
           <Menu
             size={30}
             strokeWidth={3}
+            color="blue"
             className="fixed top-3   rounded-sm  left-3  z-[40]"
             onClick={handleToggle}
           />
         ) : (
           <X
             size={30}
+            color="blue"
             strokeWidth={3}
             className="fixed top-3  left-3 z-[40]"
             onClick={handleToggle}

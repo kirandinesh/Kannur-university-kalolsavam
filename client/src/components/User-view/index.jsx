@@ -23,15 +23,17 @@ const AchievementList = lazy(() =>
 
 function UserCommonLayout() {
   return (
-    <div className="w-screen min-h-screen p-2 overflow-hidden">
+    <div className="w-screen min-h-screen  overflow-hidden">
       <PreLoader />
       <div className="flex">
         <div>
           <UserViewHeader />
         </div>
       </div>
-      <main className="pt-3 sm:pt-20 xl:pt-28 xl:px-36 lg:pt-28 lg:px-10">
+      <div>
         <UserViewHomePage />
+      </div>
+      <main className="p-2">
         <Suspense
           fallback={
             <div>

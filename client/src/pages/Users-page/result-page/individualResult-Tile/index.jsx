@@ -86,7 +86,7 @@ function IndividualResultTile({ result }) {
                           {first?.members?.length > 0 ? (
                             <div className="mt-2">
                               <div className="border-t border-b py-1 mb-1">
-                                <span>Group Members</span>
+                                <span></span>
                               </div>
                               <div className="grid grid-cols-1 gap-2 w-full">
                                 {first?.members?.map((member, idx) => (
@@ -155,8 +155,8 @@ function IndividualResultTile({ result }) {
                           </span>
                           {second?.members?.length > 0 ? (
                             <div className="mt-2">
-                              <div className="border-t border-b py-1 mb-1">
-                                <span>Group Members</span>
+                              <div className="border-t border-b py-1 mt-2 mb-1">
+                                <span></span>
                               </div>
                               <div className="grid grid-cols-1 gap-2 w-full">
                                 {second?.members?.map((member, idx) => (
@@ -226,7 +226,7 @@ function IndividualResultTile({ result }) {
                           {third?.members?.length > 0 ? (
                             <div className="mt-2">
                               <div className="border-t border-b py-1 mb-1">
-                                <span>Group Members</span>
+                                <span></span>
                               </div>
                               <div className="grid grid-cols-1 gap-2 w-full">
                                 {third?.members?.map((member, idx) => (

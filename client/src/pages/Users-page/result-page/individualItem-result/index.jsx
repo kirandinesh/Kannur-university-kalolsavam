@@ -97,12 +97,10 @@ function IndividualResultSection() {
                 <CarouselContent>
                   {indivitualResultList.map((result) => (
                     <CarouselItem
-                      className="sm:basis-1/2  2xl:px-5 2xl:basis-1/2 flex items-center justify-center "
+                      className="sm:basis-1/2  2xl:px-5 2xl:basis-1/3 flex items-center justify-center lg:basis-1/2"
                       key={result?._id}
                     >
-                      <div className="flex ">
-                        <IndividualResultTile result={result} />
-                      </div>
+                      <IndividualResultTile result={result} />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
