@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import {
   Carousel,
   CarouselContent,
@@ -16,9 +17,10 @@ function IndividualResultTile({ result }) {
   const pluginThird = useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
+  console.log(result?.firstPrize);
 
   return (
-    <div className="w-full xl:max-w-[400px]  mx-auto ">
+    <div className="w-full xl:max-w-[400px] shrink-0  mx-auto ">
       <div className="">
         <div className="absolute flex items-center justify-center text-white  opacity-90 rounded-xl inset-0.5 "></div>
         <div className="absolute w-56 h-48 bg-white blur-[50px] -left-1/2 -top-1/2"></div>
@@ -69,7 +71,12 @@ function IndividualResultTile({ result }) {
                         className="  flex  w-md  justify-center"
                         key={first._id}
                       >
-                        <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                        <div className="text-center border-2 rounded-xl shadow-sm pt-5  w-full p-3  relative  ">
+                          <div className="absolute top-1 right-0 mr-1 rounded-full">
+                            <Badge className="bg-sky-600 font-heading text-sm">
+                              {first?.grade}
+                            </Badge>
+                          </div>
                           <h3 className="text-lg font-semibold text-black">
                             {first?.studentName}
                           </h3>
@@ -134,7 +141,12 @@ function IndividualResultTile({ result }) {
                         className="  flex  w-md  justify-center"
                         key={second._id}
                       >
-                        <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                        <div className="text-center border-2 rounded-xl shadow-sm  pt-5 w-full p-3 relative  ">
+                          <div className="absolute top-1 right-0 mr-1 rounded-full">
+                            <Badge className="bg-sky-600 font-heading text-sm">
+                              {second?.grade}
+                            </Badge>
+                          </div>
                           <h3 className="text-lg font-semibold text-black">
                             {second?.studentName}
                           </h3>
@@ -199,7 +211,12 @@ function IndividualResultTile({ result }) {
                         className="  flex  w-md  justify-center"
                         key={third._id}
                       >
-                        <div className="text-center border-2 rounded-xl shadow-sm  w-full p-3   ">
+                        <div className="text-center border-2 rounded-xl shadow-sm  w-full pt-5 p-3 relative  ">
+                          <div className="absolute top-1 right-0 mr-1 rounded-full">
+                            <Badge className="bg-sky-600 font-heading text-sm">
+                              {third?.grade}
+                            </Badge>
+                          </div>
                           <h3 className="text-lg font-semibold text-black">
                             {third?.studentName}
                           </h3>

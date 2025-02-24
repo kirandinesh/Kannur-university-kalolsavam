@@ -67,6 +67,7 @@ function IndividualResultSection() {
       setSearchResults([]);
     }
   }, [keyword]);
+  console.log(indivitualResultList, "dsdsd");
 
   return (
     <section id="result" className="overflow-hidden pt-10 sm:pt-20">
@@ -79,7 +80,7 @@ function IndividualResultSection() {
         </div>
 
         <main className="grid grid-cols-1 gap-5 mt-5">
-          <Card className="flex justify-center items-center">
+          <Card className="flex justify-center  items-center">
             {loading ? (
               <p className="text-center py-5">Loading latest results...</p>
             ) : indivitualResultList.length > 0 ? (
@@ -96,7 +97,7 @@ function IndividualResultSection() {
                 <CarouselContent>
                   {indivitualResultList.map((result) => (
                     <CarouselItem
-                      className="sm:basis-1/2 2xl:px-5 2xl:basis-1/3 flex items-center justify-center lg:basis-1/3"
+                      className="sm:basis-1/2  2xl:px-5 2xl:basis-1/3 flex items-center justify-center lg:basis-1/2"
                       key={result?._id}
                     >
                       <IndividualResultTile result={result} />
