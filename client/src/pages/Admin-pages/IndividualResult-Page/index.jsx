@@ -92,7 +92,7 @@ function AdminIndividualReusltPage() {
           )
         : await addNewEventWinners(winnerFinalFormData);
 
-    console.log(response, "winnerForm");
+    console.log(response, "winnerFormssss");
 
     if (response?.success) {
       resetForm();
@@ -144,6 +144,8 @@ function AdminIndividualReusltPage() {
   useEffect(() => {
     if (currentWinnerUpdateEditedId !== null) getWinnerByid();
   }, [currentWinnerUpdateEditedId]);
+
+  console.log(currentWinnerUpdateEditedId, "if");
 
   return (
     <Card>

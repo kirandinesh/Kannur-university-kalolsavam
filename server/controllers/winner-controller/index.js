@@ -111,15 +111,11 @@ const getAllWinner = async (req, res) => {
 const updateWinner = async (req, res) => {
   try {
     const { id } = req.params;
-    const { groupPoints = 0, groupCollegeName = "" } = req.body;
     const updatedData = req.body;
 
     const existingWinner = await Winner.findById(id);
     if (!existingWinner) {
-      return res.status(404).json({
-        success: false,
-        message: "Winner not found",
-      });
+      return res.status(404).json({ success: false, message: "Winner not found" });
     }
 
     const oldStudents = [
@@ -134,131 +130,59 @@ const updateWinner = async (req, res) => {
       ...(updatedData.thirdPrize || []),
     ];
 
-    const oldCollegeName = existingWinner.groupCollegeName;
-    const newCollegeName = groupCollegeName;
+    const studentUpdates = {};
 
-    const oldStudentIds = oldStudents.map((student) => String(student._id));
-    const newStudentIds = newStudents.map((student) => {
-      if (!student._id) student._id = new mongoose.Types.ObjectId();
-      return String(student._id);
-    });
-
-    if (oldCollegeName && oldCollegeName !== newCollegeName) {
-      await College.updateOne(
-        { name: oldCollegeName },
-        {
-          $inc: { totalPoints: -existingWinner.groupPoints },
-          $pull: { studentsId: { $in: oldStudentIds } },
-        }
-      );
-    }
-
-    if (newCollegeName) {
-      await College.updateOne(
-        { name: newCollegeName },
-        {
-          $inc: { totalPoints: groupPoints },
-          $push: { studentsId: { $each: newStudentIds } },
-        }
-      );
-    }
-
-    const collegePointsAdjustments = {};
-    const collegeStudentUpdates = {};
-
+    // Track changes in student college and points
     oldStudents.forEach((oldStudent) => {
-      const newStudent = newStudents.find(
-        (s) => String(s._id) === String(oldStudent._id)
-      );
+      const newStudent = newStudents.find((s) => String(s._id) === String(oldStudent._id));
 
       if (newStudent) {
-        const pointChange = newStudent.points - oldStudent.points;
-        collegePointsAdjustments[oldStudent.collegeName] =
-          (collegePointsAdjustments[oldStudent.collegeName] || 0) + pointChange;
-
+        const pointDiff = newStudent.points - oldStudent.points;
+        
+        // Deduct points from old college
         if (oldStudent.collegeName !== newStudent.collegeName) {
-          collegeStudentUpdates[oldStudent.collegeName] = collegeStudentUpdates[
-            oldStudent.collegeName
-          ] || { add: [], remove: [] };
-          collegeStudentUpdates[oldStudent.collegeName].remove.push(
-            oldStudent._id
-          );
+          studentUpdates[oldStudent.collegeName] = studentUpdates[oldStudent.collegeName] || { add: [], remove: [], points: 0 };
+          studentUpdates[oldStudent.collegeName].remove.push(oldStudent._id);
+          studentUpdates[oldStudent.collegeName].points -= oldStudent.points;
 
-          collegeStudentUpdates[newStudent.collegeName] = collegeStudentUpdates[
-            newStudent.collegeName
-          ] || { add: [], remove: [] };
-          collegeStudentUpdates[newStudent.collegeName].add.push(
-            newStudent._id
-          );
+          // Add student & points to new college
+          studentUpdates[newStudent.collegeName] = studentUpdates[newStudent.collegeName] || { add: [], remove: [], points: 0 };
+          studentUpdates[newStudent.collegeName].add.push(newStudent._id);
+          studentUpdates[newStudent.collegeName].points += newStudent.points;
+        } else {
+          studentUpdates[oldStudent.collegeName] = studentUpdates[oldStudent.collegeName] || { add: [], remove: [], points: 0 };
+          studentUpdates[oldStudent.collegeName].points += pointDiff;
         }
       } else {
-        collegePointsAdjustments[oldStudent.collegeName] =
-          (collegePointsAdjustments[oldStudent.collegeName] || 0) -
-          oldStudent.points;
-        collegeStudentUpdates[oldStudent.collegeName] = collegeStudentUpdates[
-          oldStudent.collegeName
-        ] || { add: [], remove: [] };
-        collegeStudentUpdates[oldStudent.collegeName].remove.push(
-          oldStudent._id
-        );
+        // If student was removed, deduct their points
+        studentUpdates[oldStudent.collegeName] = studentUpdates[oldStudent.collegeName] || { add: [], remove: [], points: 0 };
+        studentUpdates[oldStudent.collegeName].remove.push(oldStudent._id);
+        studentUpdates[oldStudent.collegeName].points -= oldStudent.points;
       }
     });
 
+    // Handle new students who were not in the old list
     newStudents.forEach((newStudent) => {
-      const isNew = !oldStudents.some(
-        (oldStudent) => String(oldStudent._id) === String(newStudent._id)
-      );
-      if (isNew) {
-        collegePointsAdjustments[newStudent.collegeName] =
-          (collegePointsAdjustments[newStudent.collegeName] || 0) +
-          newStudent.points;
-        collegeStudentUpdates[newStudent.collegeName] = collegeStudentUpdates[
-          newStudent.collegeName
-        ] || { add: [], remove: [] };
-        collegeStudentUpdates[newStudent.collegeName].add.push(newStudent._id);
+      if (!oldStudents.some((oldStudent) => String(oldStudent._id) === String(newStudent._id))) {
+        studentUpdates[newStudent.collegeName] = studentUpdates[newStudent.collegeName] || { add: [], remove: [], points: 0 };
+        studentUpdates[newStudent.collegeName].add.push(newStudent._id);
+        studentUpdates[newStudent.collegeName].points += newStudent.points;
       }
     });
 
-    const oldColleges = new Set(
-      oldStudents.map((student) => student.collegeName)
-    );
-    const newColleges = new Set(
-      newStudents.map((student) => student.collegeName)
-    );
+    const collegeUpdates = [];
 
-    oldColleges.forEach((collegeName) => {
-      if (collegeName && !newColleges.has(collegeName)) {
-        collegePointsAdjustments[collegeName] =
-          (collegePointsAdjustments[collegeName] || 0) -
-          existingWinner.groupPoints;
+    for (const [collegeName, { add, remove, points }] of Object.entries(studentUpdates)) {
+      if (points !== 0) {
+        collegeUpdates.push({
+          updateOne: {
+            filter: { name: collegeName },
+            update: { $inc: { totalPoints: points } },
+          },
+        });
       }
-    });
-
-    if (groupPoints > 0) {
-      newColleges.forEach((collegeName) => {
-        if (collegeName) {
-          collegePointsAdjustments[collegeName] =
-            (collegePointsAdjustments[collegeName] || 0) + groupPoints;
-        }
-      });
-    }
-
-    const collegeUpdateOps = Object.entries(collegePointsAdjustments).map(
-      ([collegeName, pointChange]) => ({
-        updateOne: {
-          filter: { name: collegeName },
-          update: { $inc: { totalPoints: pointChange } },
-        },
-      })
-    );
-    if (collegeUpdateOps.length > 0) await College.bulkWrite(collegeUpdateOps);
-
-    const studentUpdateOps = [];
-    for (const [collegeName, { add, remove }] of Object.entries(
-      collegeStudentUpdates
-    )) {
       if (remove.length > 0) {
-        studentUpdateOps.push({
+        collegeUpdates.push({
           updateOne: {
             filter: { name: collegeName },
             update: { $pull: { studentsId: { $in: remove } } },
@@ -266,7 +190,7 @@ const updateWinner = async (req, res) => {
         });
       }
       if (add.length > 0) {
-        studentUpdateOps.push({
+        collegeUpdates.push({
           updateOne: {
             filter: { name: collegeName },
             update: { $push: { studentsId: { $each: add } } },
@@ -274,23 +198,14 @@ const updateWinner = async (req, res) => {
         });
       }
     }
-    if (studentUpdateOps.length > 0) await College.bulkWrite(studentUpdateOps);
 
-    const updatedWinner = await Winner.findByIdAndUpdate(id, updatedData, {
-      new: true,
-    });
+    if (collegeUpdates.length > 0) await College.bulkWrite(collegeUpdates);
 
-    res.status(200).json({
-      success: true,
-      message: "Winner updated successfully",
-      data: updatedWinner,
-    });
+    const updatedWinner = await Winner.findByIdAndUpdate(id, updatedData, { new: true });
+
+    res.status(200).json({ success: true, message: "Winner updated successfully", data: updatedWinner });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occurred",
-      error: err.message,
-    });
+    res.status(500).json({ success: false, message: "An error occurred", error: err.message });
   }
 };
 
