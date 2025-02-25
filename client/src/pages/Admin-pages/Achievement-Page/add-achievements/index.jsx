@@ -11,6 +11,7 @@ import {
 } from "@/services";
 
 import { Pencil, Trash2Icon } from "lucide-react";
+import toast from "react-hot-toast";
 
 const AdminAddAchievementPage = () => {
   const {
@@ -25,26 +26,40 @@ const AdminAddAchievementPage = () => {
     e.preventDefault();
 
     if (!achieventFormData.achievementName || !achieventFormData.studentName) {
-      alert("Please provide both Achievement Name and Student Name.");
+      toast.error("Please provide both Achievement Name and Student Name.");
       return;
     }
-
+    const toastId = toast.loading(
+      currentEditedId ? "Updating achievement..." : "Adding achievement..."
+    );
     let response;
-    if (currentEditedId) {
-      response = await adminUpdateAnAchievements(
-        currentEditedId,
-        achieventFormData
-      );
-    } else {
-      response = await adminAddNewAchievement(achieventFormData);
-    }
+    try {
+      if (currentEditedId) {
+        response = await adminUpdateAnAchievements(
+          currentEditedId,
+          achieventFormData
+        );
+      } else {
+        response = await adminAddNewAchievement(achieventFormData);
+      }
 
-    if (response?.success) {
-      setAchieventFormData(achievementInitialFormData);
-      setCurrentEditedId(null);
-      fetchAllAchievements();
-    } else {
-      alert(response?.message || "Failed to save achievement.");
+      if (response?.success) {
+        setAchieventFormData(achievementInitialFormData);
+        setCurrentEditedId(null);
+        fetchAllAchievements();
+        toast.success(
+          currentEditedId
+            ? "Achievement updated successfully!"
+            : "Achievement added successfully!",
+          { id: toastId }
+        );
+      } else {
+        toast.error(response?.message || "Failed to save achievement.", {
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message, { id: toastId });
     }
   }
 
@@ -56,12 +71,25 @@ const AdminAddAchievementPage = () => {
   }
 
   async function handleAchievementDelete(id) {
-    const response = await adminDeleteAnAchievements(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this achievement?"
+    );
+    if (!confirmDelete) return;
 
-    if (response?.success) {
-      setAchieventList((prevList) =>
-        prevList.filter((item) => item._id !== id)
-      );
+    const toastId = toast.loading("Deleting achievement...");
+
+    try {
+      const response = await adminDeleteAnAchievements(id);
+      if (response?.success) {
+        setAchieventList((prevList) =>
+          prevList.filter((item) => item._id !== id)
+        );
+        toast.success("Achievement deleted successfully!", { id: toastId });
+      } else {
+        toast.error("Failed to delete achievement.", { id: toastId });
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message, { id: toastId });
     }
   }
 

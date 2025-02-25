@@ -12,10 +12,13 @@ function EventStatusTile({ event }) {
             <div
               className={`h-2 w-2 rounded-full shadow-lg ${
                 event?.status === "ongoing"
+                  ? "bg-orange-500 shadow-orange-500 animate-bouncef"
+                  : event?.status === "completed"
                   ? "bg-emerald-500 shadow-emerald-500 animate-bouncef"
                   : "bg-red-500 shadow-red-500/50"
               }`}
-            ></div>
+            />
+
             <span className="text-sm md:text-lg tracking-wider font-heading font-bold sm:text-base text-slate-300">
               {event?.status}
             </span>

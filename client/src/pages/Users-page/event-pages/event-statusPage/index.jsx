@@ -12,6 +12,9 @@ function EventStatusComponent() {
       const response = await fetchAllEvents();
 
       if (response?.success && Array.isArray(response?.data)) {
+        const completedEvents = response.data.filter(
+          (event) => event.status === "completed"
+        );
         const ongoingEvents = response.data.filter(
           (event) => event.status === "ongoing"
         );
@@ -19,7 +22,7 @@ function EventStatusComponent() {
           .filter((event) => event.status === "upcoming")
           .slice(0, 5);
 
-        setEventList([...ongoingEvents, ...upcomingEvents]);
+        setEventList([...completedEvents, ...ongoingEvents, ...upcomingEvents]);
       }
     } catch (error) {
       console.error("Error fetching events:", error);

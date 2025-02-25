@@ -21,11 +21,11 @@ import {
   adminUpdateEventWinners,
   fetchWinnerDetailsById,
 } from "@/services";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Eraser } from "lucide-react";
+import toast from "react-hot-toast";
 
 function AdminIndividualReusltPage() {
   const {
@@ -54,7 +54,11 @@ function AdminIndividualReusltPage() {
 
   async function handleCreateWinnerResult(event) {
     event.preventDefault();
-
+    const toastId = toast.loading(
+      currentWinnerUpdateEditedId
+        ? "Updating winners..."
+        : "Submitting winners..."
+    );
     const formattedFirstPrize = winnerFirstFormData.map((winner, index) => ({
       ...winner,
       members: Array.isArray(groupWinnerFirstFormData)
@@ -82,23 +86,35 @@ function AdminIndividualReusltPage() {
       secondPrize: formattedSecondPrize,
       thirdPrize: formattedThirdPrize,
     };
-    console.log(winnerFinalFormData, "winnerwinner");
 
-    const response =
-      currentWinnerUpdateEditedId !== null
-        ? await adminUpdateEventWinners(
-            currentWinnerUpdateEditedId,
-            winnerFinalFormData
-          )
-        : await addNewEventWinners(winnerFinalFormData);
+    try {
+      const response =
+        currentWinnerUpdateEditedId !== null
+          ? await adminUpdateEventWinners(
+              currentWinnerUpdateEditedId,
+              winnerFinalFormData
+            )
+          : await addNewEventWinners(winnerFinalFormData);
 
-    console.log(response, "winnerFormssss");
+      if (response?.success) {
+        toast.success(
+          currentWinnerUpdateEditedId
+            ? "Winners updated successfully 🎉"
+            : "Winners submitted successfully 🏆",
+          { id: toastId }
+        );
 
-    if (response?.success) {
-      resetForm();
-      navigate("/adminhome/winnerlist");
-      setcurrentWinnerUpdateEditedId(null);
-      setIsSharedGroupToggled(false);
+        resetForm();
+        navigate("/adminhome/winnerlist");
+        setcurrentWinnerUpdateEditedId(null);
+        setIsSharedGroupToggled(false);
+      } else {
+        toast.error("Failed to submit winners. Please try again.", {
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message, { id: toastId });
     }
   }
 
@@ -144,8 +160,6 @@ function AdminIndividualReusltPage() {
   useEffect(() => {
     if (currentWinnerUpdateEditedId !== null) getWinnerByid();
   }, [currentWinnerUpdateEditedId]);
-
-
 
   return (
     <Card>

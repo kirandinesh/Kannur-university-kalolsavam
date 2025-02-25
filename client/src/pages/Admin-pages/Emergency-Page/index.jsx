@@ -9,7 +9,8 @@ import {
   addToCollegeTotalPoints,
   reduceFromCollegeTotalPoints,
 } from "@/services";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 
 function EmergencyPointUpdate() {
   const {
@@ -18,21 +19,41 @@ function EmergencyPointUpdate() {
     reducePointFormData,
     setReducePointFormData,
   } = useContext(AdminContext);
-
+  const [loading, setLoading] = useState(false);
   async function handleAddPointToCollege(event) {
     event.preventDefault();
 
     if (!addPointFormData.collegeName || !addPointFormData.points) {
-      console.error("Missing required fields.");
+      toast.error("Please provide College Name and Points.");
       return;
     }
 
-    const response = await addToCollegeTotalPoints({
-      collegeName: addPointFormData.collegeName,
-      points: Number(addPointFormData.points),
-    });
-    if (response?.success) {
-      setAddPointFormData(collegePointInitialFormData);
+    const points = Number(addPointFormData.points);
+    if (points <= 0) {
+      toast.error("Points must be greater than zero.");
+      return;
+    }
+    setLoading(true);
+    const toastId = toast.loading("Adding points...");
+
+    try {
+      const response = await addToCollegeTotalPoints({
+        collegeName: addPointFormData.collegeName,
+        points,
+      });
+
+      if (response?.success) {
+        setAddPointFormData(collegePointInitialFormData);
+        toast.success("Points added successfully!", { id: toastId });
+      } else {
+        toast.error(response?.message || "Failed to add points.", {
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message, { id: toastId });
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -40,16 +61,37 @@ function EmergencyPointUpdate() {
     event.preventDefault();
 
     if (!reducePointFormData.collegeName || !reducePointFormData.points) {
-      console.error("Missing required fields.");
+      toast.error("Please provide College Name and Points.");
       return;
     }
 
-    const response = await reduceFromCollegeTotalPoints({
-      collegeName: reducePointFormData.collegeName,
-      points: Number(reducePointFormData.points),
-    });
-    if (response?.success) {
-      setReducePointFormData(collegePointInitialFormData);
+    const points = Number(reducePointFormData.points);
+    if (points <= 0) {
+      toast.error("Points must be greater than zero.");
+      return;
+    }
+
+    setLoading(true);
+    const toastId = toast.loading("Deducting points...");
+
+    try {
+      const response = await reduceFromCollegeTotalPoints({
+        collegeName: reducePointFormData.collegeName,
+        points,
+      });
+
+      if (response?.success) {
+        setReducePointFormData(collegePointInitialFormData);
+        toast.success("Points deducted successfully!", { id: toastId });
+      } else {
+        toast.error(response?.message || "Failed to deduct points.", {
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message, { id: toastId });
+    } finally {
+      setLoading(false);
     }
   }
 

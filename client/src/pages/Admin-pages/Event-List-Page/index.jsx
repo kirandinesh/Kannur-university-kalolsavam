@@ -208,8 +208,17 @@ function EventList() {
                           event?.status
                         )}
                       </TableCell>
-                      <TableCell className="text-center">
-                        <Edit onClick={() => EditStatus(event?._id)} />
+                      <TableCell>
+                        <div className="flex gap-2 justify-center items-center">
+                          <Edit
+                            className="cursor-pointer w-6 h-6"
+                            onClick={() => EditStatus(event?._id)}
+                          />
+                          <CircleCheckBig
+                            className="cursor-pointer w-6 h-6"
+                            onClick={handleupdateStatusSubmit}
+                          />
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
