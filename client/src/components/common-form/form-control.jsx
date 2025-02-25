@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import {
@@ -10,10 +10,15 @@ import {
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { AdminContext } from "@/context/admin-context";
+import { fetchAllEventWinners } from "@/services";
 
 function FormControls({ formControls = [], formData, setFormData }) {
-  const { isGroupToggled, isSharedGroupToggled, publishWinnerList } =
-    useContext(AdminContext);
+  const {
+    isGroupToggled,
+    isSharedGroupToggled,
+    publishWinnerList,
+    setPublishWinnerList,
+  } = useContext(AdminContext);
   console.log(publishWinnerList, "inForm");
 
   function renderComponentByType(getControlItem) {
@@ -139,7 +144,20 @@ function FormControls({ formControls = [], formData, setFormData }) {
 
     return element;
   }
+  async function getAllWinnersList() {
+    try {
+      const response = await fetchAllEventWinners();
 
+      if (response?.success) {
+        setPublishWinnerList(response?.data);
+      }
+    } catch (error) {
+      console.error("Error fetching winners list:", error);
+    }
+  }
+  useEffect(() => {
+    getAllWinnersList();
+  }, []);
   return (
     <div className="flex flex-col gap-3">
       {formControls.map((controleItem) => (
