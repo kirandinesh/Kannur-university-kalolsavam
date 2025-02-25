@@ -19,6 +19,7 @@ import ThirdWinnerPage from "../winner-page/third-page";
 import {
   addNewEventWinners,
   adminUpdateEventWinners,
+  fetchAllEventWinners,
   fetchWinnerDetailsById,
 } from "@/services";
 
@@ -26,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Eraser } from "lucide-react";
 import toast from "react-hot-toast";
+import { Badge } from "@/components/ui/badge";
 
 function AdminIndividualReusltPage() {
   const {
@@ -49,6 +51,8 @@ function AdminIndividualReusltPage() {
     setGroupWinnerSecondFormData,
     groupWinnerThridFormData,
     setGroupWinnerThirdFormData,
+    publishWinnerList,
+    setPublishWinnerList,
   } = useContext(AdminContext);
   const navigate = useNavigate();
 
@@ -156,15 +160,36 @@ function AdminIndividualReusltPage() {
     setIsGroupToggled(false);
     setIsSharedGroupToggled(false);
   }
+  async function getAllWinnersList() {
+    try {
+      const response = await fetchAllEventWinners();
+
+      if (response?.success) {
+        setPublishWinnerList(response?.data);
+      }
+    } catch (error) {
+      console.error("Error fetching winners list:", error);
+    }
+  }
+  useEffect(() => {
+    getAllWinnersList();
+  }, []);
 
   useEffect(() => {
     if (currentWinnerUpdateEditedId !== null) getWinnerByid();
   }, [currentWinnerUpdateEditedId]);
+  console.log(publishFormData, "full");
 
   return (
     <Card>
       <CardHeader>
         <div>
+          <div className="flex justify-center items-center mb-1">
+            <span className="font-semibold">Total Event Published &nbsp; </span>{" "}
+            <Badge className=" px-2 py-1 font-heading text-sm">
+              {publishWinnerList?.length}
+            </Badge>
+          </div>
           <h1 className="text-3xl font-bold mb-2">Winner Publish</h1>
         </div>
         <div className="flex justify-between items-center space-x-2 mb-2 cursor-pointer">

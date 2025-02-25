@@ -19,7 +19,6 @@ function FormControls({ formControls = [], formData, setFormData }) {
     publishWinnerList,
     setPublishWinnerList,
   } = useContext(AdminContext);
-  console.log(publishWinnerList, "inForm");
 
   function renderComponentByType(getControlItem) {
     let element = null;
