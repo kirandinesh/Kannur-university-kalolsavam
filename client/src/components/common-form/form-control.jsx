@@ -11,6 +11,7 @@ import {
 import { Textarea } from "../ui/textarea";
 import { AdminContext } from "@/context/admin-context";
 import { fetchAllEventWinners } from "@/services";
+import { CircleCheckBig } from "lucide-react";
 
 function FormControls({ formControls = [], formData, setFormData }) {
   const {
@@ -87,17 +88,18 @@ function FormControls({ formControls = [], formData, setFormData }) {
               {getControlItem.options && getControlItem.options.length > 0
                 ? getControlItem.options.map((optionItem) => (
                     <SelectItem
-                      className={` ${
-                        publishWinnerList.some(
-                          (item) => item.eventName === optionItem.label
-                        )
-                          ? "bg-green-400"
-                          : ""
-                      }  `}
+                      className={`   `}
                       key={optionItem.id}
                       value={optionItem.label}
                     >
-                      {optionItem.label}
+                      <div className="flex gap-2">
+                        {optionItem.label}
+                        {publishWinnerList.some(
+                          (item) => item.eventName === optionItem.label
+                        ) ? (
+                          <CircleCheckBig color="green" />
+                        ) : null}
+                      </div>
                     </SelectItem>
                   ))
                 : null}
