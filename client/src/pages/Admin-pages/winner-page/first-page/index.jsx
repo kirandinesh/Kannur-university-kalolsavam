@@ -223,6 +223,7 @@ function FirstWinnerPage() {
             <div>
               <Label>Point</Label>
               <Input
+                onWheel={(e) => e.target.blur()}
                 type="number"
                 placeholder="Enter point..."
                 name={`point-${index + 1}`}

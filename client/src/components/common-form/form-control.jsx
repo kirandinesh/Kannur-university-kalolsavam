@@ -24,6 +24,7 @@ function FormControls({ formControls = [], formData, setFormData }) {
       case "input":
         element = (
           <Input
+            onWheel={(e) => e.target.blur()}
             disabled={
               getControlItem.name === "groupPoints"
                 ? !isGroupToggled && !isSharedGroupToggled

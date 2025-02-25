@@ -97,6 +97,7 @@ function EventList() {
         </div>
         <div className="flex gap-2 items-center cursor-pointer">
           <Input
+            onWheel={(e) => e.target.blur()}
             type="search"
             placeholder="search event name or category..."
             value={keyword}
