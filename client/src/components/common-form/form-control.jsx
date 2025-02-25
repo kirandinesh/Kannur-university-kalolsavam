@@ -88,7 +88,13 @@ function FormControls({ formControls = [], formData, setFormData }) {
               {getControlItem.options && getControlItem.options.length > 0
                 ? getControlItem.options.map((optionItem) => (
                     <SelectItem
-                      className={`   `}
+                      className={` ${
+                        publishWinnerList.some(
+                          (item) => item.eventName === optionItem.label
+                        )
+                          ? "text-emerald-400 "
+                          : ""
+                      }  `}
                       key={optionItem.id}
                       value={optionItem.label}
                     >
