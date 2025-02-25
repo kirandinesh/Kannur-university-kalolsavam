@@ -12,7 +12,9 @@ import { Textarea } from "../ui/textarea";
 import { AdminContext } from "@/context/admin-context";
 
 function FormControls({ formControls = [], formData, setFormData }) {
-  const { isGroupToggled, isSharedGroupToggled } = useContext(AdminContext);
+  const { isGroupToggled, isSharedGroupToggled, publishWinnerList } =
+    useContext(AdminContext);
+  console.log(publishWinnerList, "inForm");
 
   function renderComponentByType(getControlItem) {
     let element = null;
@@ -79,7 +81,17 @@ function FormControls({ formControls = [], formData, setFormData }) {
             <SelectContent className="text-ellipsis overflow-hidden max-w-3xs sm:max-w-lg">
               {getControlItem.options && getControlItem.options.length > 0
                 ? getControlItem.options.map((optionItem) => (
-                    <SelectItem key={optionItem.id} value={optionItem.label}>
+                    <SelectItem
+                      className={` ${
+                        publishWinnerList.some(
+                          (item) => item.eventName === optionItem.label
+                        )
+                          ? "bg-green-400"
+                          : ""
+                      }  `}
+                      key={optionItem.id}
+                      value={optionItem.label}
+                    >
                       {optionItem.label}
                     </SelectItem>
                   ))

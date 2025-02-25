@@ -17,7 +17,7 @@ function IndividualResultTile({ result }) {
   const pluginThird = useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
-  console.log(result?.firstPrize);
+
 
   return (
     <div className="w-full xl:max-w-[400px] shrink-0  mx-auto ">

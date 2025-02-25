@@ -145,7 +145,7 @@ function AdminIndividualReusltPage() {
     if (currentWinnerUpdateEditedId !== null) getWinnerByid();
   }, [currentWinnerUpdateEditedId]);
 
-  console.log(currentWinnerUpdateEditedId, "if");
+
 
   return (
     <Card>

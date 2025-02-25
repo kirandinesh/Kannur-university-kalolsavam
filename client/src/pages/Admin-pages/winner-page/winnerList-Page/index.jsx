@@ -55,6 +55,7 @@ function WinnerListPage() {
   useEffect(() => {
     getAllWinnersList();
   }, []);
+  
 
   return (
     <div className="min-h-screen   overflow-hidden">

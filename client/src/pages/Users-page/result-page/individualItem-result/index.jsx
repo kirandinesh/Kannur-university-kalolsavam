@@ -67,7 +67,7 @@ function IndividualResultSection() {
       setSearchResults([]);
     }
   }, [keyword]);
-  console.log(indivitualResultList, "dsdsd");
+
 
   return (
     <section id="result" className="overflow-hidden pt-10 sm:pt-20">
