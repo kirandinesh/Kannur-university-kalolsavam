@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function WinnerListTile({ resultList, editId, setEditId, handleUpdate }) {
   
+console.log(resultList.eventName);
 
   return (
     <Card className="overflow-hidden shadow-xl rounded-2xl border border-gray-300 bg-white">

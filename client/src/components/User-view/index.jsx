@@ -42,7 +42,7 @@ function UserCommonLayout() {
           }
         >
           <UserViewCollegePage />
-          <EventStatusComponent />
+          {/* <EventStatusComponent /> */}
           <UserViewCollegeListingPage />
           <IndividualResultSection />
           <AchievementList />

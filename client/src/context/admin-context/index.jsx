@@ -6,6 +6,8 @@ import {
   groupwinnerResultFirstInitialFormData,
   groupwinnerResultSecondInitialFormData,
   groupwinnerResultThirdInitialFormData,
+  offStageLeadingCollegeInitialFormData,
+  onStageLeadingCollegeInitialFormData,
   publishResultInitialFormData,
   resultPublishInitialFormData,
   winnerResultFirstInitialFormData,
@@ -73,6 +75,19 @@ export default function AdminProvider({ children }) {
   const [reducePointFormData, setReducePointFormData] = useState(
     collegePointInitialFormData
   );
+
+  const [offStageLeadingCollegeFormData, setOffStageLeadingCollegeFormData] =
+    useState(offStageLeadingCollegeInitialFormData);
+
+  const [onStageLeadingCollegeFormData, setOnStageLeadingCollegeFormData] =
+    useState(onStageLeadingCollegeInitialFormData);
+  const [offStageLeadingCollegeList, setOffStageLeadingCollegeList] = useState(
+    []
+  );
+  const [onStageLeadingCollegeList, setOnStageLeadingCollegeList] = useState(
+    []
+  );
+
   return (
     <AdminContext.Provider
       value={{
@@ -122,6 +137,14 @@ export default function AdminProvider({ children }) {
         setAddPointFormData,
         reducePointFormData,
         setReducePointFormData,
+        offStageLeadingCollegeFormData,
+        setOffStageLeadingCollegeFormData,
+        onStageLeadingCollegeFormData,
+        setOnStageLeadingCollegeFormData,
+        offStageLeadingCollegeList,
+        setOffStageLeadingCollegeList,
+        onStageLeadingCollegeList,
+        setOnStageLeadingCollegeList,
       }}
     >
       {children}

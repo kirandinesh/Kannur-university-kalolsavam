@@ -241,38 +241,37 @@ function FirstWinnerPage() {
                 </Button>
               </div>
             )}
+            {isSharedGroupToggled &&
+              groupWinnerFirstFormData &&
+              groupWinnerFirstFormData.length > 0 &&
+              groupWinnerFirstFormData.map((group, index) => (
+                <div key={index}>
+                  <div className="w-full">
+                    <Label>Student Name</Label>
+                    <div className="flex gap-2 justify-center items-center">
+                      <Input
+                        required
+                        type="text"
+                        placeholder="Enter Members name..."
+                        name={`student-${index + 1}`}
+                        value={groupWinnerFirstFormData[index]?.memberName}
+                        onChange={(event) =>
+                          handleGroupMemberNameChange(event, index)
+                        }
+                      />
+                      <Trash2Icon
+                        color="red"
+                        size={30}
+                        className="cursor-pointer"
+                        onClick={() => handleDeleteMemeber(index)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </CardContent>
       ))}
-
-      {isSharedGroupToggled &&
-        groupWinnerFirstFormData &&
-        groupWinnerFirstFormData.length > 0 &&
-        groupWinnerFirstFormData.map((group, index) => (
-          <CardFooter key={index}>
-            <div className="w-full">
-              <Label>Student Name</Label>
-              <div className="flex gap-2 justify-center items-center">
-                <Input
-                  required
-                  type="text"
-                  placeholder="Enter Members name..."
-                  name={`student-${index + 1}`}
-                  value={groupWinnerFirstFormData[index]?.memberName}
-                  onChange={(event) =>
-                    handleGroupMemberNameChange(event, index)
-                  }
-                />
-                <Trash2Icon
-                  color="red"
-                  size={30}
-                  className="cursor-pointer"
-                  onClick={() => handleDeleteMemeber(index)}
-                />
-              </div>
-            </div>
-          </CardFooter>
-        ))}
     </Card>
   );
 }

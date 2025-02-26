@@ -22,6 +22,10 @@ const userWinnerRouter = require("./routes/user-routes/winner-routers");
 const userAchievementsRouter = require("./routes/user-routes/achievement-routes");
 const userAnnouncementRouter = require("./routes/user-routes/annoucement-router");
 const adminAnnouncementRouter = require("./routes/admin-routes/annoucement-router");
+const adminOnStageRouter = require("./routes/admin-routes/onStage-routes");
+const adminOffStageRouter = require("./routes/admin-routes/offStage-routes");
+const userOnStageRouter = require("./routes/user-routes/onStage-routes");
+const userOffStageRouter = require("./routes/user-routes/offStage-routes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -53,6 +57,12 @@ app.use("/admin/achievement", adminAchievementsRouter);
 app.use("/user/achievement", userAchievementsRouter);
 app.use("/user/announcement", userAnnouncementRouter);
 app.use("/admin/announcement", adminAnnouncementRouter);
+
+app.use("/user/onstage", userOnStageRouter);
+app.use("/user/offstage", userOffStageRouter);
+
+app.use("/admin/onstage", adminOnStageRouter);
+app.use("/admin/offstage", adminOffStageRouter);
 
 app.use((err, req, res, next) => {
   console.log(err.stack);

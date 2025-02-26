@@ -211,11 +211,11 @@ export const eventOptions = [
   { id: "Ghattam", label: "Ghattam" },
   { id: "Ghazal-Female", label: "Ghazal - Female" },
   { id: "Ghazal-Male", label: "Ghazal - Male" },
-  { id: "Guitar-Paschchathyam", label: "Guitar - Paschchathyam" },
-  { id: "Harmonium-Pourasthyam", label: "Harmonium - Pourasthyam" },
+  { id: "Guitar", label: "Guitar" },
+  { id: "Harmonium", label: "Harmonium" },
   { id: "Hindustani-Sangeetham-Female", label: "Hindustani Sangeetham Female" },
   { id: "Hindustani-Sangeetham-Male", label: "Hindustani Sangeetham Male" },
-  { id: "Jazz-Pashchathyam", label: "Jazz - Pashchathyam" },
+  { id: "Jazz", label: "Jazz" },
   { id: "Karnataka-Sangeetham-Female", label: "Karnataka Sangeetham Female" },
   { id: "Karnataka-Sangeetham-Male", label: "Karnataka Sangeetham Male" },
   { id: "Kathakali-Sangeetham", label: "Kathakali Sangeetham" },
@@ -226,17 +226,17 @@ export const eventOptions = [
   { id: "Mappilappaattu-Single", label: "Mappilappaattu - Single" },
   { id: "Mrudangam", label: "Mrudangam" },
   { id: "Nadanpattu", label: "Nadanpattu" },
-  { id: "Naagaswaram-Pourasthyam", label: "Naagaswaram - Pourasthyam" },
+  { id: "Naagaswaram", label: "Naagaswaram" },
   {
     id: "Pashehcathya-Sangeetham-Single",
     label: "Pashehcathya Sangeetham Single",
   },
-  { id: "Pullankuzhal-Pourasthyam", label: "Pullankuzhal - Pourasthyam" },
+  { id: "Pullankuzhal", label: "Pullankuzhal" },
   { id: "Sanghagaanam-Indian", label: "Sanghagaanam - Indian" },
   { id: "Sanghagaanam-Pashehcathyam", label: "Sanghagaanam - Pashehcathyam" },
   { id: "Tabala", label: "Tabala" },
-  { id: "Veena-Pourasthyam", label: "Veena - Pourasthyam" },
-  { id: "Violin-Pashehcathyam", label: "Violin - Pashehcathyam" },
+  { id: "Veena", label: "Veena" },
+  { id: "Violin-Pashchathyam", label: "Violin - Pashchathyam" },
   { id: "Violin-Pourasthyam", label: "Violin - Pourasthyam" },
 ];
 
@@ -596,6 +596,10 @@ export const collegeList = [
     id: "Khansa-Womens-College-for-Advanced-Studies",
     label: "Khansa Womens College for Advanced Studies",
   },
+  {
+    id: "NA",
+    label: "NA",
+  },
 ];
 
 export const resultPublishFormControls = [
@@ -860,6 +864,52 @@ export const collegePointUpdateFormcontrol = [
     placeholder: "Enter the Points",
   },
 ];
+
+export const offStageLeadingCollegeFormControl = [
+  {
+    name: "offStagecollegeName",
+    label: "College Name",
+    componentType: "select",
+    type: "text",
+    placeholder: "",
+    options: collegeList,
+  },
+  {
+    name: "offStagepoints",
+    label: "OffStage Point",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter the Points",
+  },
+];
+
+export const offStageLeadingCollegeInitialFormData = {
+  offStagecollegeName: "",
+  offStagepoints: "",
+};
+
+export const onStageLeadingCollegeFormControl = [
+  {
+    name: "onStagecollegeName",
+    label: "College Name",
+    componentType: "select",
+    type: "text",
+    placeholder: "",
+    options: collegeList,
+  },
+  {
+    name: "onStagepoints",
+    label: "OnStage Point",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter the Points",
+  },
+];
+
+export const onStageLeadingCollegeInitialFormData = {
+  onStagecollegeName: "",
+  onStagepoints: "",
+};
 
 export const collegePointInitialFormData = {
   collegeName: "",

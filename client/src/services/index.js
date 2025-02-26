@@ -188,3 +188,58 @@ export async function reduceFromCollegeTotalPoints(formData) {
   );
   return data;
 }
+
+//onStage admin
+
+export async function adminAddNewOnstageCollege(formData) {
+  const { data } = await axiosInstance.post(
+    "/admin/onstage/add-onstage",
+    formData
+  );
+  return data;
+}
+
+export async function adminFetchAllOnstageCollege() {
+  const { data } = await axiosInstance.get("/admin/onstage/get-onstage");
+  return data;
+}
+
+export async function adminDeleteOnstageCollege(id) {
+  const { data } = await axiosInstance.delete(
+    `/admin/onstage/delete-onstage/${id}`
+  );
+  return data;
+}
+
+//offStage admin
+export async function adminAddNewOffstageCollege(formData) {
+  const { data } = await axiosInstance.post(
+    "/admin/offstage/add-offstage",
+    formData
+  );
+  return data;
+}
+
+export async function adminFetchAllOffstageCollege() {
+  const { data } = await axiosInstance.get("/admin/offstage/get-offstage");
+  return data;
+}
+
+export async function adminDeleteOffstageCollege(id) {
+  const { data } = await axiosInstance.delete(
+    `/admin/offstage/delete-offstage/${id}`
+  );
+  return data;
+}
+//onStage user
+
+export async function userFetchAllOnstageCollege() {
+  const { data } = await axiosInstance.get("/user/onstage/get-onstage");
+  return data;
+}
+
+//offStage user
+export async function userFetchAllOffstageCollege() {
+  const { data } = await axiosInstance.get("/user/offstage/get-offstage");
+  return data;
+}

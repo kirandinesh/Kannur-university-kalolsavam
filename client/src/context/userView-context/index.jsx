@@ -9,7 +9,12 @@ export default function UserViewProvider({ children }) {
   const [indivitualResultList, setIndivitualResultList] = useState([]);
   const [achieventList, setAchieventList] = useState([]);
   const [announcementList, setAnnouncementList] = useState([]);
-
+  const [offStageLeadingCollegeList, setOffStageLeadingCollegeList] = useState(
+    []
+  );
+  const [onStageLeadingCollegeList, setOnStageLeadingCollegeList] = useState(
+    []
+  );
   return (
     <UserViewContext.Provider
       value={{
@@ -25,6 +30,10 @@ export default function UserViewProvider({ children }) {
         setAchieventList,
         announcementList,
         setAnnouncementList,
+        offStageLeadingCollegeList,
+        setOffStageLeadingCollegeList,
+        onStageLeadingCollegeList,
+        setOnStageLeadingCollegeList,
       }}
     >
       {children}

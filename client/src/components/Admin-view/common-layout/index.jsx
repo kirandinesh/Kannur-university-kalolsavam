@@ -6,6 +6,7 @@ import AnnouncementPage from "@/pages/Admin-pages/Announcement-page";
 import EmergencyPointUpdate from "@/pages/Admin-pages/Emergency-Page";
 import EventList from "@/pages/Admin-pages/Event-List-Page";
 import AdminIndividualReusltPage from "@/pages/Admin-pages/IndividualResult-Page";
+import AdminOffStageLeadingCollege from "@/pages/Admin-pages/offStage-page";
 import WinnerListPage from "@/pages/Admin-pages/winner-page/winnerList-Page";
 
 import {
@@ -17,6 +18,7 @@ import {
   Megaphone,
   Play,
   ShieldAlert,
+  Landmark,
 } from "lucide-react";
 import { useContext, useState } from "react";
 
@@ -32,6 +34,12 @@ function AdminMainContent() {
       icon: FileBadge,
       value: "achievements",
       component: <AdminAddAchievementPage />,
+    },
+    {
+      label: "OffStage",
+      icon: Landmark,
+      value: "offstage",
+      component: <AdminOffStageLeadingCollege />,
     },
     {
       label: "Event",

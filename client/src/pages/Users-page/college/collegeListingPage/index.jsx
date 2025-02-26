@@ -71,7 +71,7 @@ function UserViewCollegeListingPage() {
             College Point Table
           </h1>
         </div>
-        <main className=" mt-5">
+        <main className=" mt-5 ">
           <Card>
             <CardHeader>
               <Input
@@ -81,10 +81,11 @@ function UserViewCollegeListingPage() {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </CardHeader>
-            <CardContent className="max-h-screen py-10 overflow-y-auto">
+            <CardContent className="max-h-screen py-10 overflow-y-auto px-16">
               <Table>
                 <TableHeader>
                   <TableRow>
+                    <TableHead className="">Index</TableHead>
                     <TableHead className="">College Name</TableHead>
                     <TableHead>Points</TableHead>
                   </TableRow>

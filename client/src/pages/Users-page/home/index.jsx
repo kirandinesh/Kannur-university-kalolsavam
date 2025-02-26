@@ -54,9 +54,12 @@ function UserViewHomePage() {
                 className="w-28 h-28 object-cover rounded-full"
               />
             </div>
-            <h1 className="text-white text-4xl lg:text-5xl font-extrabold drop-shadow-lg">
-              Kalolsavam 2023 - 24
+            <h1 className="text-white font-subHeading uppercase text-3xl lg:text-5xl font-semibold drop-shadow-lg">
+              kannur university union arts festival
             </h1>
+            <span className="text-red-500 drop-shadow-xl shadow-white font-heading font-semibold text-xl sm:text-2xl md:text-3xl ">
+              S. N. College Kannur
+            </span>
             <p className="text-gray-300 text-lg mt-2 max-w-lg">
               Celebrate the spirit of art, culture, and creativity with us!
               Experience an unforgettable journey of talent and passion.
