@@ -9,6 +9,9 @@ const addWinner = async (req, res) => {
       groupPoints = 0,
       groupCollegeName = "",
       groupGrade = "",
+      firstPrize = [],
+      secondPrize = [],
+      thirdPrize = [],
     } = req.body;
 
     const isEventExist = await Winner.findOne({ eventName });
@@ -92,7 +95,7 @@ const addWinner = async (req, res) => {
 
 const getAllWinner = async (req, res) => {
   try {
-    const winners = await Winner.find({});
+    const winners = await Winner.find({}).sort({ publishedAt: -1 });
 
     res.status(200).json({
       success: true,
@@ -115,7 +118,9 @@ const updateWinner = async (req, res) => {
 
     const existingWinner = await Winner.findById(id);
     if (!existingWinner) {
-      return res.status(404).json({ success: false, message: "Winner not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Winner not found" });
     }
 
     const oldStudents = [
@@ -132,39 +137,50 @@ const updateWinner = async (req, res) => {
 
     const studentUpdates = {};
 
-    // Track changes in student college and points
     oldStudents.forEach((oldStudent) => {
-      const newStudent = newStudents.find((s) => String(s._id) === String(oldStudent._id));
+      const newStudent = newStudents.find(
+        (s) => String(s._id) === String(oldStudent._id)
+      );
 
       if (newStudent) {
         const pointDiff = newStudent.points - oldStudent.points;
-        
-        // Deduct points from old college
+
         if (oldStudent.collegeName !== newStudent.collegeName) {
-          studentUpdates[oldStudent.collegeName] = studentUpdates[oldStudent.collegeName] || { add: [], remove: [], points: 0 };
+          studentUpdates[oldStudent.collegeName] = studentUpdates[
+            oldStudent.collegeName
+          ] || { add: [], remove: [], points: 0 };
           studentUpdates[oldStudent.collegeName].remove.push(oldStudent._id);
           studentUpdates[oldStudent.collegeName].points -= oldStudent.points;
 
-          // Add student & points to new college
-          studentUpdates[newStudent.collegeName] = studentUpdates[newStudent.collegeName] || { add: [], remove: [], points: 0 };
+          studentUpdates[newStudent.collegeName] = studentUpdates[
+            newStudent.collegeName
+          ] || { add: [], remove: [], points: 0 };
           studentUpdates[newStudent.collegeName].add.push(newStudent._id);
           studentUpdates[newStudent.collegeName].points += newStudent.points;
         } else {
-          studentUpdates[oldStudent.collegeName] = studentUpdates[oldStudent.collegeName] || { add: [], remove: [], points: 0 };
+          studentUpdates[oldStudent.collegeName] = studentUpdates[
+            oldStudent.collegeName
+          ] || { add: [], remove: [], points: 0 };
           studentUpdates[oldStudent.collegeName].points += pointDiff;
         }
       } else {
-        // If student was removed, deduct their points
-        studentUpdates[oldStudent.collegeName] = studentUpdates[oldStudent.collegeName] || { add: [], remove: [], points: 0 };
+        studentUpdates[oldStudent.collegeName] = studentUpdates[
+          oldStudent.collegeName
+        ] || { add: [], remove: [], points: 0 };
         studentUpdates[oldStudent.collegeName].remove.push(oldStudent._id);
         studentUpdates[oldStudent.collegeName].points -= oldStudent.points;
       }
     });
 
-    // Handle new students who were not in the old list
     newStudents.forEach((newStudent) => {
-      if (!oldStudents.some((oldStudent) => String(oldStudent._id) === String(newStudent._id))) {
-        studentUpdates[newStudent.collegeName] = studentUpdates[newStudent.collegeName] || { add: [], remove: [], points: 0 };
+      if (
+        !oldStudents.some(
+          (oldStudent) => String(oldStudent._id) === String(newStudent._id)
+        )
+      ) {
+        studentUpdates[newStudent.collegeName] = studentUpdates[
+          newStudent.collegeName
+        ] || { add: [], remove: [], points: 0 };
         studentUpdates[newStudent.collegeName].add.push(newStudent._id);
         studentUpdates[newStudent.collegeName].points += newStudent.points;
       }
@@ -172,7 +188,9 @@ const updateWinner = async (req, res) => {
 
     const collegeUpdates = [];
 
-    for (const [collegeName, { add, remove, points }] of Object.entries(studentUpdates)) {
+    for (const [collegeName, { add, remove, points }] of Object.entries(
+      studentUpdates
+    )) {
       if (points !== 0) {
         collegeUpdates.push({
           updateOne: {
@@ -201,11 +219,21 @@ const updateWinner = async (req, res) => {
 
     if (collegeUpdates.length > 0) await College.bulkWrite(collegeUpdates);
 
-    const updatedWinner = await Winner.findByIdAndUpdate(id, updatedData, { new: true });
+    const updatedWinner = await Winner.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
 
-    res.status(200).json({ success: true, message: "Winner updated successfully", data: updatedWinner });
+    res.status(200).json({
+      success: true,
+      message: "Winner updated successfully",
+      data: updatedWinner,
+    });
   } catch (err) {
-    res.status(500).json({ success: false, message: "An error occurred", error: err.message });
+    res.status(500).json({
+      success: false,
+      message: "An error occurred",
+      error: err.message,
+    });
   }
 };
 

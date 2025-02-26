@@ -5,7 +5,7 @@ const groupMemberResultSchema = new mongoose.Schema({
 });
 
 const studentResultSchema = new mongoose.Schema({
-  studentName: { type: String, required: true },
+  studentName: { type: String },
   studentCode: { type: String, trim: true },
   members: { type: [groupMemberResultSchema], default: [] },
   collegeName: { type: String },

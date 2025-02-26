@@ -18,7 +18,6 @@ function IndividualResultTile({ result }) {
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
 
-
   return (
     <div className="w-full xl:max-w-[400px] shrink-0  mx-auto ">
       <div className="">
@@ -41,214 +40,226 @@ function IndividualResultTile({ result }) {
             {/* Group College Section */}
 
             {/* First Prize Section */}
-            <div className="flex flex-col  gap-2">
-              <div
-                className="bg-gradient-to-r from-amber-500 to-yellow-400 p-2 rounded-2xl shadow-xl text-center"
-                style={{
-                  WebkitMask:
-                    "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
-                  mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
-                }}
-              >
-                <span className="text-white text-xl font-bold">
-                  🥇 First Prize
-                </span>
-              </div>
-              <div className="w-full   flex justify-center overflow-x-auto">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
+            {result?.firstPrize && result?.firstPrize?.length > 0 ? (
+              <div className="flex flex-col  gap-2">
+                <div
+                  className="bg-gradient-to-r from-amber-500 to-yellow-400 p-2 rounded-2xl shadow-xl text-center"
+                  style={{
+                    WebkitMask:
+                      "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                    mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
                   }}
-                  plugins={[pluginFirst.current]}
-                  onMouseEnter={pluginFirst.current.stop}
-                  onMouseLeave={pluginFirst.current.play}
-                  className="w-full flex   justify-center"
                 >
-                  <CarouselContent>
-                    {result?.firstPrize?.map((first) => (
-                      <CarouselItem
-                        className="  flex  w-md  justify-center"
-                        key={first._id}
-                      >
-                        <div className="text-center border-2 rounded-xl shadow-sm pt-5  w-full p-3  relative  ">
-                          <div className="absolute top-1 right-0 mr-1 rounded-full">
-                            <Badge className="bg-sky-600 font-heading text-sm">
-                              {first?.grade}
-                            </Badge>
-                          </div>
-                          <h3 className="text-lg font-semibold text-black">
-                            {first?.studentName}
-                          </h3>
-                          <span className="text-gray-600 font-subHeading ">
-                            {first?.collegeName}
-                          </span>
-                          {first?.members?.length > 0 ? (
-                            <div className="mt-2">
-                              <div className="border-t border-b py-1 mb-1">
-                                <span></span>
-                              </div>
-                              <div className="grid grid-cols-1 gap-2 w-full">
-                                {first?.members?.map((member, idx) => (
-                                  <button
-                                    key={idx}
-                                    className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                                  >
-                                    {member?.memberName || ""}
-                                  </button>
-                                ))}
-                              </div>
+                  <span className="text-white text-xl font-bold">
+                    🥇 First Prize
+                  </span>
+                </div>
+                <div className="w-full   flex justify-center overflow-x-auto">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: true,
+                    }}
+                    plugins={[pluginFirst.current]}
+                    onMouseEnter={pluginFirst.current.stop}
+                    onMouseLeave={pluginFirst.current.play}
+                    className="w-full flex   justify-center"
+                  >
+                    <CarouselContent>
+                      {result?.firstPrize?.map((first) => (
+                        <CarouselItem
+                          className="  flex  w-md  justify-center"
+                          key={first._id}
+                        >
+                          <div className="text-center border-2 rounded-xl shadow-sm pt-5  w-full p-3  relative  ">
+                            <div className="absolute top-1 right-0 mr-1 rounded-full">
+                              <Badge className="bg-sky-600 font-heading text-sm">
+                                {first?.grade}
+                              </Badge>
                             </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
+                            <h3 className="text-lg font-semibold text-black">
+                              {first?.studentName}
+                            </h3>
+                            <span className="text-gray-600 font-subHeading ">
+                              {first?.collegeName}
+                            </span>
+                            {first?.members?.length > 0 ? (
+                              <div className="mt-2">
+                                <div className="border-t border-b py-1 mb-1">
+                                  <span></span>
+                                </div>
+                                <div className="grid grid-cols-1 gap-2 w-full">
+                                  {first?.members?.map((member, idx) => (
+                                    <button
+                                      key={idx}
+                                      className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                    >
+                                      {member?.memberName || ""}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
 
             {/* Second Prize Section */}
-            <div className="flex flex-col gap-2">
-              <div
-                className="bg-gradient-to-r from-gray-400 to-gray-200 p-2 rounded-2xl shadow-xl text-center"
-                style={{
-                  WebkitMask:
-                    "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
-                  mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
-                }}
-              >
-                <span className="text-black text-xl font-bold">
-                  🥈 Second Prize
-                </span>
-              </div>
-              <div className="w-full  flex justify-center overflow-x-auto">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
+            {result?.secondPrize && result?.secondPrize?.length > 0 ? (
+              <div className="flex flex-col gap-2">
+                <div
+                  className="bg-gradient-to-r from-gray-400 to-gray-200 p-2 rounded-2xl shadow-xl text-center"
+                  style={{
+                    WebkitMask:
+                      "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                    mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
                   }}
-                  plugins={[pluginSecond.current]}
-                  onMouseEnter={pluginSecond.current.stop}
-                  onMouseLeave={pluginSecond.current.play}
-                  className="w-full flex   justify-center"
                 >
-                  <CarouselContent>
-                    {result?.secondPrize?.map((second) => (
-                      <CarouselItem
-                        className="  flex  w-md  justify-center"
-                        key={second._id}
-                      >
-                        <div className="text-center border-2 rounded-xl shadow-sm  pt-5 w-full p-3 relative  ">
-                          <div className="absolute top-1 right-0 mr-1 rounded-full">
-                            <Badge className="bg-sky-600 font-heading text-sm">
-                              {second?.grade}
-                            </Badge>
-                          </div>
-                          <h3 className="text-lg font-semibold text-black">
-                            {second?.studentName}
-                          </h3>
-                          <span className="text-gray-600 font-subHeading ">
-                            {second?.collegeName}
-                          </span>
-                          {second?.members?.length > 0 ? (
-                            <div className="mt-2">
-                              <div className="border-t border-b py-1 mt-2 mb-1">
-                                <span></span>
-                              </div>
-                              <div className="grid grid-cols-1 gap-2 w-full">
-                                {second?.members?.map((member, idx) => (
-                                  <button
-                                    key={idx}
-                                    className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                                  >
-                                    {member?.memberName || ""}
-                                  </button>
-                                ))}
-                              </div>
+                  <span className="text-black text-xl font-bold">
+                    🥈 Second Prize
+                  </span>
+                </div>
+                <div className="w-full  flex justify-center overflow-x-auto">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: true,
+                    }}
+                    plugins={[pluginSecond.current]}
+                    onMouseEnter={pluginSecond.current.stop}
+                    onMouseLeave={pluginSecond.current.play}
+                    className="w-full flex   justify-center"
+                  >
+                    <CarouselContent>
+                      {result?.secondPrize?.map((second) => (
+                        <CarouselItem
+                          className="  flex  w-md  justify-center"
+                          key={second._id}
+                        >
+                          <div className="text-center border-2 rounded-xl shadow-sm  pt-5 w-full p-3 relative  ">
+                            <div className="absolute top-1 right-0 mr-1 rounded-full">
+                              <Badge className="bg-sky-600 font-heading text-sm">
+                                {second?.grade}
+                              </Badge>
                             </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
+                            <h3 className="text-lg font-semibold text-black">
+                              {second?.studentName}
+                            </h3>
+                            <span className="text-gray-600 font-subHeading ">
+                              {second?.collegeName}
+                            </span>
+                            {second?.members?.length > 0 ? (
+                              <div className="mt-2">
+                                <div className="border-t border-b py-1 mt-2 mb-1">
+                                  <span></span>
+                                </div>
+                                <div className="grid grid-cols-1 gap-2 w-full">
+                                  {second?.members?.map((member, idx) => (
+                                    <button
+                                      key={idx}
+                                      className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                    >
+                                      {member?.memberName || ""}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
 
             {/* Third Prize Section */}
-            <div className="flex flex-col gap-2 w-full">
-              <div
-                className="bg-gradient-to-r from-orange-600 to-orange-400 p-2 rounded-2xl shadow-xl text-center"
-                style={{
-                  WebkitMask:
-                    "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
-                  mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
-                }}
-              >
-                <span className="text-white text-xl font-bold">
-                  🥉 Third Prize
-                </span>
-              </div>
-              <div className="w-full  flex justify-center items-center ">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
+            {result?.thirdPrize && result?.thirdPrize?.length > 0 ? (
+              <div className="flex flex-col gap-2 w-full">
+                <div
+                  className="bg-gradient-to-r from-orange-600 to-orange-400 p-2 rounded-2xl shadow-xl text-center"
+                  style={{
+                    WebkitMask:
+                      "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
+                    mask: "linear-gradient(90deg, transparent, white 30%, white 80%, transparent)",
                   }}
-                  plugins={[pluginThird.current]}
-                  onMouseEnter={pluginThird.current.stop}
-                  onMouseLeave={pluginThird.current.play}
-                  className="w-full flex   justify-center"
                 >
-                  <CarouselContent>
-                    {result?.thirdPrize?.map((third) => (
-                      <CarouselItem
-                        className="  flex  w-md  justify-center"
-                        key={third._id}
-                      >
-                        <div className="text-center border-2 rounded-xl shadow-sm  w-full pt-5 p-3 relative  ">
-                          <div className="absolute top-1 right-0 mr-1 rounded-full">
-                            <Badge className="bg-sky-600 font-heading text-sm">
-                              {third?.grade}
-                            </Badge>
-                          </div>
-                          <h3 className="text-lg font-semibold text-black">
-                            {third?.studentName}
-                          </h3>
-                          <span className="text-gray-600 font-subHeading ">
-                            {third?.collegeName}
-                          </span>
-                          {third?.members?.length > 0 ? (
-                            <div className="mt-2">
-                              <div className="border-t border-b py-1 mb-1">
-                                <span></span>
-                              </div>
-                              <div className="grid grid-cols-1 gap-2 w-full">
-                                {third?.members?.map((member, idx) => (
-                                  <button
-                                    key={idx}
-                                    className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                                  >
-                                    {member?.memberName || ""}
-                                  </button>
-                                ))}
-                              </div>
+                  <span className="text-white text-xl font-bold">
+                    🥉 Third Prize
+                  </span>
+                </div>
+                <div className="w-full  flex justify-center items-center ">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: true,
+                    }}
+                    plugins={[pluginThird.current]}
+                    onMouseEnter={pluginThird.current.stop}
+                    onMouseLeave={pluginThird.current.play}
+                    className="w-full flex   justify-center"
+                  >
+                    <CarouselContent>
+                      {result?.thirdPrize?.map((third) => (
+                        <CarouselItem
+                          className="  flex  w-md  justify-center"
+                          key={third._id}
+                        >
+                          <div className="text-center border-2 rounded-xl shadow-sm  w-full pt-5 p-3 relative  ">
+                            <div className="absolute top-1 right-0 mr-1 rounded-full">
+                              <Badge className="bg-sky-600 font-heading text-sm">
+                                {third?.grade}
+                              </Badge>
                             </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
+                            <h3 className="text-lg font-semibold text-black">
+                              {third?.studentName}
+                            </h3>
+                            <span className="text-gray-600 font-subHeading ">
+                              {third?.collegeName}
+                            </span>
+                            {third?.members?.length > 0 ? (
+                              <div className="mt-2">
+                                <div className="border-t border-b py-1 mb-1">
+                                  <span></span>
+                                </div>
+                                <div className="grid grid-cols-1 gap-2 w-full">
+                                  {third?.members?.map((member, idx) => (
+                                    <button
+                                      key={idx}
+                                      className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                                    >
+                                      {member?.memberName || ""}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
 
             {/* End */}
           </div>

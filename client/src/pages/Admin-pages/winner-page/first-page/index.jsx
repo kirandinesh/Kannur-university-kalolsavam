@@ -32,22 +32,24 @@ function FirstWinnerPage() {
     winnerFirstFormData,
     setWinnerFirstFormData,
     isSharedGroupToggled,
-    groupWinnerFirstFormData,
-    setGroupWinnerFirstFormData,
     setIsSharedGroupToggled,
   } = useContext(AdminContext);
+
   function handleNewStudents() {
-    setWinnerFirstFormData([
-      ...winnerFirstFormData,
-      { ...winnerResultFirstInitialFormData[0] },
-    ]);
+    const newStudent = {
+      ...winnerResultFirstInitialFormData[0],
+      members: [],
+    };
+    setWinnerFirstFormData([...winnerFirstFormData, newStudent]);
   }
 
-  function handleAddGroupMembers() {
-    setGroupWinnerFirstFormData([
-      ...groupWinnerFirstFormData,
-      { ...groupwinnerResultFirstInitialFormData[0] },
-    ]);
+  function handleAddGroupMembers(index) {
+    const updatedStudents = [...winnerFirstFormData];
+    updatedStudents[index].members = [
+      ...updatedStudents[index].members,
+      { memberName: "" },
+    ];
+    setWinnerFirstFormData(updatedStudents);
   }
 
   function handleStudentNameChange(event, currentIndex) {
@@ -68,17 +70,13 @@ function FirstWinnerPage() {
     setWinnerFirstFormData(cpyWinnerFisrtFormdata);
   }
 
-  //group
-  function handleGroupMemberNameChange(event, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...groupWinnerFirstFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      memberName: event.target.value,
-    };
-    setGroupWinnerFirstFormData(cpyWinnerFisrtFormdata);
+  function handleGroupMemberNameChange(event, studentIndex, memberIndex) {
+    const updatedStudents = [...winnerFirstFormData];
+    updatedStudents[studentIndex].members[memberIndex].memberName =
+      event.target.value;
+    setWinnerFirstFormData(updatedStudents);
   }
 
-  //
   function handlePointChange(event, currentIndex) {
     let cpyWinnerFisrtFormdata = [...winnerFirstFormData];
     cpyWinnerFisrtFormdata[currentIndex] = {
@@ -112,10 +110,12 @@ function FirstWinnerPage() {
     );
   }
 
-  function handleDeleteMemeber(index) {
-    setGroupWinnerFirstFormData((prevData) =>
-      prevData.filter((_, i) => i !== index)
-    );
+  function handleDeleteMember(studentIndex, memberIndex) {
+    const updatedStudents = [...winnerFirstFormData];
+    updatedStudents[studentIndex].members = updatedStudents[
+      studentIndex
+    ].members.filter((_, i) => i !== memberIndex);
+    setWinnerFirstFormData(updatedStudents);
   }
 
   function handleGroupSwitchToggle(value) {
@@ -142,32 +142,33 @@ function FirstWinnerPage() {
           </div>
         </div>
       </CardHeader>
-      {winnerFirstFormData.map((item, index) => (
-        <CardContent key={index} className="border-b">
-          {index > 0 ? (
+      {winnerFirstFormData.map((item, studentIndex) => (
+        <CardContent key={studentIndex} className="border-b">
+          {studentIndex > 0 ? (
             <div className="mt-2">
               <Trash2Icon
                 color="red"
                 size={30}
                 className="cursor-pointer"
-                onClick={() => handleDeleteStudent(index)}
+                onClick={() => handleDeleteStudent(studentIndex)}
               />
             </div>
           ) : null}
 
           <div className="flex justify-center mb-2">
-            <h1> Student {index + 1} </h1>
+            <h1> Student {studentIndex + 1} </h1>
           </div>
           <div className="flex flex-col gap-3">
             <div>
               <Label>Student Name</Label>
               <Input
-                required
                 type="text"
                 placeholder="Enter student name..."
-                name={`student-${index + 1}`}
-                value={winnerFirstFormData[index]?.studentName}
-                onChange={(event) => handleStudentNameChange(event, index)}
+                name={`student-${studentIndex + 1}`}
+                value={winnerFirstFormData[studentIndex]?.studentName}
+                onChange={(event) =>
+                  handleStudentNameChange(event, studentIndex)
+                }
               />
             </div>
             <div>
@@ -175,16 +176,20 @@ function FirstWinnerPage() {
               <Input
                 type="text"
                 placeholder="Enter student code..."
-                name={`student-${index + 1}`}
-                value={winnerFirstFormData[index]?.studentCode}
-                onChange={(event) => handleStudentCodeChange(event, index)}
+                name={`student-${studentIndex + 1}`}
+                value={winnerFirstFormData[studentIndex]?.studentCode}
+                onChange={(event) =>
+                  handleStudentCodeChange(event, studentIndex)
+                }
               />
             </div>
             <div>
               <Label>College Name</Label>
               <Select
-                onValueChange={(value) => handleCollegeNameChange(value, index)}
-                value={winnerFirstFormData[index]?.collegeName}
+                onValueChange={(value) =>
+                  handleCollegeNameChange(value, studentIndex)
+                }
+                value={winnerFirstFormData[studentIndex]?.collegeName}
               >
                 <SelectTrigger
                   className={`${isGroupToggled ? "bg-gray-300" : ""}`}
@@ -203,8 +208,10 @@ function FirstWinnerPage() {
             <div>
               <Label>Grade</Label>
               <Select
-                onValueChange={(value) => handleGradeChange(value, index)}
-                value={winnerFirstFormData[index]?.grade}
+                onValueChange={(value) =>
+                  handleGradeChange(value, studentIndex)
+                }
+                value={winnerFirstFormData[studentIndex]?.grade}
               >
                 <SelectTrigger
                   className={`${isGroupToggled ? "bg-gray-300" : ""}`}
@@ -226,49 +233,56 @@ function FirstWinnerPage() {
                 onWheel={(e) => e.target.blur()}
                 type="number"
                 placeholder="Enter point..."
-                name={`point-${index + 1}`}
-                value={winnerFirstFormData[index]?.points}
-                onChange={(event) => handlePointChange(event, index)}
+                name={`point-${studentIndex + 1}`}
+                value={winnerFirstFormData[studentIndex]?.points}
+                onChange={(event) => handlePointChange(event, studentIndex)}
               />
             </div>
             {isSharedGroupToggled && (
               <div className="w-full flex justify-center items-center">
                 <Button
-                  onClick={handleAddGroupMembers}
+                  onClick={() => handleAddGroupMembers(studentIndex)}
                   className="w-full cursor-pointer"
                 >
-                  Add Group Memebers
+                  Add Group Members
                 </Button>
               </div>
             )}
             {isSharedGroupToggled &&
-              groupWinnerFirstFormData &&
-              groupWinnerFirstFormData.length > 0 &&
-              groupWinnerFirstFormData.map((group, index) => (
-                <div key={index}>
-                  <div className="w-full">
-                    <Label>Student Name</Label>
-                    <div className="flex gap-2 justify-center items-center">
-                      <Input
-                        required
-                        type="text"
-                        placeholder="Enter Members name..."
-                        name={`student-${index + 1}`}
-                        value={groupWinnerFirstFormData[index]?.memberName}
-                        onChange={(event) =>
-                          handleGroupMemberNameChange(event, index)
-                        }
-                      />
-                      <Trash2Icon
-                        color="red"
-                        size={30}
-                        className="cursor-pointer"
-                        onClick={() => handleDeleteMemeber(index)}
-                      />
+              winnerFirstFormData[studentIndex].members &&
+              winnerFirstFormData[studentIndex].members.length > 0 &&
+              winnerFirstFormData[studentIndex].members.map(
+                (group, memberIndex) => (
+                  <div key={memberIndex}>
+                    <div className="w-full">
+                      <Label>Member Name</Label>
+                      <div className="flex gap-2 justify-center items-center">
+                        <Input
+                          type="text"
+                          placeholder="Enter Members name..."
+                          name={`member-${memberIndex + 1}`}
+                          value={group.memberName}
+                          onChange={(event) =>
+                            handleGroupMemberNameChange(
+                              event,
+                              studentIndex,
+                              memberIndex
+                            )
+                          }
+                        />
+                        <Trash2Icon
+                          color="red"
+                          size={30}
+                          className="cursor-pointer"
+                          onClick={() =>
+                            handleDeleteMember(studentIndex, memberIndex)
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
           </div>
         </CardContent>
       ))}

@@ -81,7 +81,7 @@ function UserViewCollegeListingPage() {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </CardHeader>
-            <CardContent className="max-h-screen py-10 overflow-y-auto px-16">
+            <CardContent className="max-h-screen py-10 overflow-y-auto sm:px-16">
               <Table>
                 <TableHeader>
                   <TableRow>

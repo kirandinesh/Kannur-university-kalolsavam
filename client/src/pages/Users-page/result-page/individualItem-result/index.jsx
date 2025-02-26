@@ -68,7 +68,6 @@ function IndividualResultSection() {
     }
   }, [keyword]);
 
-
   return (
     <section id="result" className="overflow-hidden pt-10 sm:pt-20">
       <div>

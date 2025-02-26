@@ -63,33 +63,18 @@ function AdminIndividualReusltPage() {
         ? "Updating winners..."
         : "Submitting winners..."
     );
-    const formattedFirstPrize = winnerFirstFormData.map((winner, index) => ({
-      ...winner,
-      members: Array.isArray(groupWinnerFirstFormData)
-        ? groupWinnerFirstFormData
-        : [],
-    }));
-
-    const formattedSecondPrize = secondWinnerFormData.map((winner, index) => ({
-      ...winner,
-      members: Array.isArray(groupWinnerSecondFormData)
-        ? groupWinnerSecondFormData
-        : [],
-    }));
-
-    const formattedThirdPrize = thirdWinnerFormData.map((winner, index) => ({
-      ...winner,
-      members: Array.isArray(groupWinnerThridFormData)
-        ? groupWinnerThridFormData
-        : [],
-    }));
 
     const winnerFinalFormData = {
       eventName: publishFormData.eventName,
-      firstPrize: formattedFirstPrize,
-      secondPrize: formattedSecondPrize,
-      thirdPrize: formattedThirdPrize,
+      firstPrize: winnerFirstFormData,
+      ...(secondWinnerFormData.length > 0 && {
+        secondPrize: secondWinnerFormData,
+      }),
+      ...(thirdWinnerFormData.length > 0 && {
+        thirdPrize: thirdWinnerFormData,
+      }),
     };
+console.log(winnerFinalFormData,'final');
 
     try {
       const response =

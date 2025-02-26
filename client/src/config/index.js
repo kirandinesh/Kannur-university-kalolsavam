@@ -89,7 +89,7 @@ export const eventOptions = [
   { id: "Pookkalam", label: "Pookkalam" },
   { id: "Poster-Rachana", label: "Poster Rachana" },
   { id: "Rangoli", label: "Rangoli" },
-  { id: "Chadkyarkoothu", label: "Chadkyarkoothu" },
+  { id: "Chakkyarkoothu", label: "Chakkyarkoothu" },
   { id: "Kathaprasangam", label: "Kathaprasangam" },
   { id: "Mime", label: "Mime" },
   { id: "Mimicry", label: "Mimicry" },
@@ -112,7 +112,7 @@ export const eventOptions = [
   { id: "Kolkali", label: "Kolkali" },
   { id: "Kuchipudi-Female", label: "Kuchipudi - Female" },
   { id: "Kuchipudi-Male", label: "Kuchipudi - Male" },
-  { id: "Madrganikali", label: "Madrganikali" },
+  { id: "Margamkali", label: "Margamkali" },
   { id: "Mohiniyattam", label: "Mohiniyattam" },
   { id: "Naadodi-Nritham-Group", label: "Naadodi Nritham Group" },
   {
@@ -126,7 +126,7 @@ export const eventOptions = [
   { id: "Poorakkali", label: "Poorakkali" },
   { id: "Sanghanritham-Female", label: "Sanghanritham Female" },
   { id: "Sanghanritham-Male", label: "Sanghanritham Male" },
-  { id: "Thiruvaatthirakali-Female", label: "Thiruvaatthirakali - Female" },
+  { id: "Thiruvathira-Female", label: "Thiruvathira - Female" },
   { id: "Vattappaatt", label: "Vattappaatt" },
   { id: "Aksharaslokam", label: "Aksharaslokam" },
   { id: "Cherukatharachana-Arabic", label: "Cherukatharachana Arabic" },
@@ -729,6 +729,7 @@ export const winnerResultFirstInitialFormData = [
     collegeName: "",
     grade: "",
     points: "",
+    members: [],
   },
 ];
 
@@ -756,6 +757,7 @@ export const winnerResultSecondInitialFormData = [
     collegeName: "",
     grade: "",
     points: "",
+    members: [],
   },
 ];
 export const winnerResultThirdInitialFormData = [
@@ -765,6 +767,7 @@ export const winnerResultThirdInitialFormData = [
     collegeName: "",
     grade: "",
     points: "",
+    members: [],
   },
 ];
 export const eventStatusOption = [

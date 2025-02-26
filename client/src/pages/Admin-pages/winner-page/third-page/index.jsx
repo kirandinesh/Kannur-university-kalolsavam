@@ -31,90 +31,75 @@ function ThirdWinnerPage() {
     setThirdWinnerFormData,
     isGroupToggled,
     isSharedGroupToggled,
-    groupWinnerThridFormData,
-    setGroupWinnerThirdFormData,
     setIsSharedGroupToggled,
   } = useContext(AdminContext);
+
   function handleNewStudents() {
-    setThirdWinnerFormData([
-      ...thirdWinnerFormData,
-      { ...winnerResultThirdInitialFormData[0] },
-    ]);
-  }
-
-  function handleAddGroupMembers() {
-    setGroupWinnerThirdFormData([
-      ...groupWinnerThridFormData,
-      { ...groupwinnerResultThirdInitialFormData[0] },
-    ]);
-  }
-
-  function handleStudentNameChange(event, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      studentName: event.target.value,
+    const newStudent = {
+      ...winnerResultThirdInitialFormData[0],
+      members: [],
     };
-    setThirdWinnerFormData(cpyWinnerFisrtFormdata);
+    setThirdWinnerFormData([...thirdWinnerFormData, newStudent]);
   }
 
-  function handleStudentCodeChange(event, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      studentCode: event.target.value,
-    };
-    setThirdWinnerFormData(cpyWinnerFisrtFormdata);
+  function handleAddGroupMembers(studentIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].members = [
+      ...updatedStudents[studentIndex].members,
+      { memberName: "" },
+    ];
+    setThirdWinnerFormData(updatedStudents);
   }
 
-  //group
-  function handleGroupMemberNameChange(event, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...groupWinnerThridFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      memberName: event.target.value,
-    };
-    setGroupWinnerThirdFormData(cpyWinnerFisrtFormdata);
+  function handleStudentNameChange(event, studentIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].studentName = event.target.value;
+    setThirdWinnerFormData(updatedStudents);
   }
 
-  //
-
-  function handlePointChange(event, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      points: event.target.value,
-    };
-    setThirdWinnerFormData(cpyWinnerFisrtFormdata);
+  function handleStudentCodeChange(event, studentIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].studentCode = event.target.value;
+    setThirdWinnerFormData(updatedStudents);
   }
 
-  function handleCollegeNameChange(value, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      collegeName: value,
-    };
-    setThirdWinnerFormData(cpyWinnerFisrtFormdata);
+  function handleGroupMemberNameChange(event, studentIndex, memberIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].members[memberIndex].memberName =
+      event.target.value;
+    setThirdWinnerFormData(updatedStudents);
   }
 
-  function handleGradeChange(value, currentIndex) {
-    let cpyWinnerFisrtFormdata = [...thirdWinnerFormData];
-    cpyWinnerFisrtFormdata[currentIndex] = {
-      ...cpyWinnerFisrtFormdata[currentIndex],
-      grade: value,
-    };
-    setThirdWinnerFormData(cpyWinnerFisrtFormdata);
+  function handlePointChange(event, studentIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].points = event.target.value;
+    setThirdWinnerFormData(updatedStudents);
   }
-  function handleDeleteStudent(index) {
+
+  function handleCollegeNameChange(value, studentIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].collegeName = value;
+    setThirdWinnerFormData(updatedStudents);
+  }
+
+  function handleGradeChange(value, studentIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].grade = value;
+    setThirdWinnerFormData(updatedStudents);
+  }
+
+  function handleDeleteStudent(studentIndex) {
     setThirdWinnerFormData((prevData) =>
-      prevData.filter((_, i) => i !== index)
+      prevData.filter((_, i) => i !== studentIndex)
     );
   }
 
-  function handleDeleteMemeber(index) {
-    setGroupWinnerThirdFormData((prevData) =>
-      prevData.filter((_, i) => i !== index)
-    );
+  function handleDeleteMember(studentIndex, memberIndex) {
+    const updatedStudents = [...thirdWinnerFormData];
+    updatedStudents[studentIndex].members = updatedStudents[
+      studentIndex
+    ].members.filter((_, i) => i !== memberIndex);
+    setThirdWinnerFormData(updatedStudents);
   }
 
   function handleGroupSwitchToggle(value) {
@@ -127,11 +112,11 @@ function ThirdWinnerPage() {
         <div>
           <Button onClick={handleNewStudents}>Add Students</Button>
         </div>
-        <div className="flex  justify-center items-center">
+        <div className="flex justify-center items-center">
           <h2 className="font-subHeading text-2xl">Third Prize</h2>
         </div>
         <div className="flex flex-col gap-5 justify-between">
-          <div className="flex items-center  space-x-2">
+          <div className="flex items-center space-x-2">
             <Switch
               checked={isSharedGroupToggled}
               id="group-mode"
@@ -141,31 +126,31 @@ function ThirdWinnerPage() {
           </div>
         </div>
       </CardHeader>
-      {thirdWinnerFormData.map((item, index) => (
-        <CardContent key={index} className="border-b">
-          {index > 0 ? (
+      {thirdWinnerFormData.map((item, studentIndex) => (
+        <CardContent key={studentIndex} className="border-b">
+          {studentIndex > 0 ? (
             <div className="mt-2">
               <Trash2Icon
                 color="red"
                 size={30}
                 className="cursor-pointer"
-                onClick={() => handleDeleteStudent(index)}
+                onClick={() => handleDeleteStudent(studentIndex)}
               />
             </div>
           ) : null}
           <div className="flex justify-center mb-2">
-            <h1> Student {index + 1} </h1>
+            <h1> Student {studentIndex + 1} </h1>
           </div>
           <div className="flex flex-col gap-3">
             <div>
               <Label>Student Name</Label>
               <Input
-                required
                 type="text"
                 placeholder="Enter student name..."
-                name={`student-${index + 1}`}
-                value={thirdWinnerFormData[index]?.studentName}
-                onChange={(event) => handleStudentNameChange(event, index)}
+                value={item.studentName}
+                onChange={(event) =>
+                  handleStudentNameChange(event, studentIndex)
+                }
               />
             </div>
             <div>
@@ -173,23 +158,26 @@ function ThirdWinnerPage() {
               <Input
                 type="text"
                 placeholder="Enter student code..."
-                name={`student-${index + 1}`}
-                value={thirdWinnerFormData[index]?.studentCode}
-                onChange={(event) => handleStudentCodeChange(event, index)}
+                value={item.studentCode}
+                onChange={(event) =>
+                  handleStudentCodeChange(event, studentIndex)
+                }
               />
             </div>
             <div>
               <Label>College Name</Label>
               <Select
-                onValueChange={(value) => handleCollegeNameChange(value, index)}
-                value={thirdWinnerFormData[index]?.collegeName}
+                onValueChange={(value) =>
+                  handleCollegeNameChange(value, studentIndex)
+                }
+                value={item.collegeName}
               >
                 <SelectTrigger
                   className={`${isGroupToggled ? "bg-gray-300" : ""}`}
                 >
                   <SelectValue placeholder="College Name" />
                 </SelectTrigger>
-                <SelectContent className="text-ellipsis overflow-hidden max-w-3xs  sm:max-w-lg">
+                <SelectContent>
                   {collegeList.map((college) => (
                     <SelectItem key={college.id} value={college.label}>
                       {college.label}
@@ -201,15 +189,17 @@ function ThirdWinnerPage() {
             <div>
               <Label>Grade</Label>
               <Select
-                onValueChange={(value) => handleGradeChange(value, index)}
-                value={thirdWinnerFormData[index]?.grade}
+                onValueChange={(value) =>
+                  handleGradeChange(value, studentIndex)
+                }
+                value={item.grade}
               >
                 <SelectTrigger
                   className={`${isGroupToggled ? "bg-gray-300" : ""}`}
                 >
                   <SelectValue placeholder="Grade Point" />
                 </SelectTrigger>
-                <SelectContent className="text-ellipsis overflow-hidden max-w-3xs  sm:max-w-lg">
+                <SelectContent>
                   {gradeOptions.map((grade) => (
                     <SelectItem key={grade.id} value={grade.label}>
                       {grade.label}
@@ -221,55 +211,57 @@ function ThirdWinnerPage() {
             <div>
               <Label>Point</Label>
               <Input
-                onWheel={(e) => e.target.blur()}
                 type="number"
                 placeholder="Enter point..."
-                name={`point-${index + 1}`}
-                value={thirdWinnerFormData[index]?.points}
-                onChange={(event) => handlePointChange(event, index)}
+                value={item.points}
+                onChange={(event) => handlePointChange(event, studentIndex)}
               />
             </div>
             {isSharedGroupToggled && (
               <div className="w-full flex justify-center items-center">
                 <Button
-                  onClick={handleAddGroupMembers}
+                  onClick={() => handleAddGroupMembers(studentIndex)}
                   className="w-full cursor-pointer"
                 >
-                  Add Group Memebers
+                  Add Group Members
                 </Button>
               </div>
             )}
+            {isSharedGroupToggled &&
+              item.members &&
+              item.members.length > 0 &&
+              item.members.map((member, memberIndex) => (
+                <div key={memberIndex}>
+                  <div className="w-full">
+                    <Label>Member Name</Label>
+                    <div className="flex gap-2 justify-center items-center">
+                      <Input
+                        type="text"
+                        placeholder="Enter member name..."
+                        value={member.memberName}
+                        onChange={(event) =>
+                          handleGroupMemberNameChange(
+                            event,
+                            studentIndex,
+                            memberIndex
+                          )
+                        }
+                      />
+                      <Trash2Icon
+                        color="red"
+                        size={30}
+                        className="cursor-pointer"
+                        onClick={() =>
+                          handleDeleteMember(studentIndex, memberIndex)
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </CardContent>
       ))}
-      {isSharedGroupToggled &&
-        groupWinnerThridFormData &&
-        groupWinnerThridFormData.length > 0 &&
-        groupWinnerThridFormData.map((group, index) => (
-          <CardFooter key={index}>
-            <div className="w-full">
-              <Label>Student Name</Label>
-              <div className="flex gap-2 justify-center items-center">
-                <Input
-                  required
-                  type="text"
-                  placeholder="Enter Members name..."
-                  name={`student-${index + 1}`}
-                  value={groupWinnerThridFormData[index]?.memberName}
-                  onChange={(event) =>
-                    handleGroupMemberNameChange(event, index)
-                  }
-                />
-                <Trash2Icon
-                  color="red"
-                  size={30}
-                  className="cursor-pointer"
-                  onClick={() => handleDeleteMemeber(index)}
-                />
-              </div>
-            </div>
-          </CardFooter>
-        ))}
     </Card>
   );
 }
