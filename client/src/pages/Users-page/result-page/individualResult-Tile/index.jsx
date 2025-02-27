@@ -5,19 +5,28 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 import { useRef } from "react";
 
 function IndividualResultTile({ result }) {
   const pluginFirst = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
   const pluginSecond = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
   const pluginThird = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
-
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
+  ]);
+  const [emblaRefsecond] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
+  ]);
+  const [emblaRefthird] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
+  ]);
   return (
     <div className="w-full xl:max-w-[400px] shrink-0  mx-auto ">
       <div className="">
@@ -88,15 +97,23 @@ function IndividualResultTile({ result }) {
                                 <div className="border-t border-b py-1 mb-1">
                                   <span></span>
                                 </div>
-                                <div className="grid grid-cols-1 gap-2 w-full">
-                                  {first?.members?.map((member, idx) => (
-                                    <button
-                                      key={idx}
-                                      className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                                    >
-                                      {member?.memberName || ""}
-                                    </button>
-                                  ))}
+                                <div className="embla " ref={emblaRef}>
+                                  <div className="embla__container">
+                                    {first?.members?.map((member, idx) => (
+                                      <div
+                                        className={`${
+                                          first?.members?.length > 0
+                                            ? "embla__slide"
+                                            : ""
+                                        }`}
+                                        key={idx}
+                                      >
+                                        <button className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                                          {member?.memberName || ""}
+                                        </button>
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             ) : (
@@ -162,15 +179,23 @@ function IndividualResultTile({ result }) {
                                 <div className="border-t border-b py-1 mt-2 mb-1">
                                   <span></span>
                                 </div>
-                                <div className="grid grid-cols-1 gap-2 w-full">
-                                  {second?.members?.map((member, idx) => (
-                                    <button
-                                      key={idx}
-                                      className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                                    >
-                                      {member?.memberName || ""}
-                                    </button>
-                                  ))}
+                                <div className="embla " ref={emblaRefsecond}>
+                                  <div className="embla__container">
+                                    {second?.members?.map((member, idx) => (
+                                      <div
+                                        className={`${
+                                          second?.members?.length > 0
+                                            ? "embla__slide"
+                                            : ""
+                                        }`}
+                                        key={idx}
+                                      >
+                                        <button className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                                          {member?.memberName || ""}
+                                        </button>
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             ) : (
@@ -236,15 +261,23 @@ function IndividualResultTile({ result }) {
                                 <div className="border-t border-b py-1 mb-1">
                                   <span></span>
                                 </div>
-                                <div className="grid grid-cols-1 gap-2 w-full">
-                                  {third?.members?.map((member, idx) => (
-                                    <button
-                                      key={idx}
-                                      className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
-                                    >
-                                      {member?.memberName || ""}
-                                    </button>
-                                  ))}
+                                <div className="embla " ref={emblaRefthird}>
+                                  <div className="embla__container">
+                                    {third?.members?.map((member, idx) => (
+                                      <div
+                                        className={`${
+                                          third?.members?.length > 0
+                                            ? "embla__slide"
+                                            : ""
+                                        }`}
+                                        key={idx}
+                                      >
+                                        <button className="font-heading flex  w-full gap-2 items-center mx-auto shadow-xl text-sm text-gray-50 bg-[#0A0D2D] backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFFFFF] hover:text-black before:-z-10 before:aspect-square before:hover:scale-200 before:hover:duration-500 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                                          {member?.memberName || ""}
+                                        </button>
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               </div>
                             ) : (

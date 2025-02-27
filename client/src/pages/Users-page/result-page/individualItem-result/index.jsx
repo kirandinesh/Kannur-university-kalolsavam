@@ -21,7 +21,7 @@ function IndividualResultSection() {
   } = useContext(UserViewContext);
 
   const [keyword, setKeyword] = useState("");
-  const [loading, setLoading] = useState(true); // Track loading state
+  const [loading, setLoading] = useState(true); 
   const [searchParams, setSearchParams] = useSearchParams();
   const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 

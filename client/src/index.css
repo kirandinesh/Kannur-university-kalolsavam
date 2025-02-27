@@ -41,7 +41,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 :root {
@@ -146,6 +146,17 @@ input[type=number] {
   -webkit-background-clip: text;
   color: transparent;
   white-space: nowrap;
+}
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }
 
 @layer base {
