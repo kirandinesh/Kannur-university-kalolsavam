@@ -1,6 +1,8 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 
 function CollegeTable({ college, index }) {
+ 
+
   return (
     <TableRow key={index}>
       <TableCell>{index + 1}</TableCell>

@@ -6,7 +6,7 @@ function AchievementTile({ achievement }) {
         <span className="text-xs font-texts">pts</span>
       </div>
       <div className="text-gray-50 mb-8">
-        <span className="font-bold text-3xl">
+        <span className="uppercase font-bold text-3xl">
           {achievement?.achievementName}
         </span>
         {achievement?.studentName.length > 0 ? (

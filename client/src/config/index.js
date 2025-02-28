@@ -594,7 +594,7 @@ export const collegeList = [
   },
   {
     id: "Khansa-Womens-College-for-Advanced-Studies",
-    label: "Khansa Womens College for Advanced Studies",
+    label: "Khansa Women's College for Advanced Studies",
   },
   {
     id: "NA",

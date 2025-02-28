@@ -27,7 +27,6 @@ function IndividualResultTile({ result }) {
   const [emblaRefthird] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   ]);
-  console.log(result?.eventName);
 
   return (
     <div className="w-full xl:max-w-[400px] shrink-0  mx-auto ">

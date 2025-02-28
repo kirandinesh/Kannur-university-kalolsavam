@@ -1,5 +1,5 @@
 const College = require("../../models/colleges.model");
-
+const Winner = require("../../models/winner");
 const addCollege = async (req, res) => {
   try {
     const colleges = req.body;
@@ -34,6 +34,7 @@ const getAllCollege = async (req, res) => {
     const fetchCollegeDetails = await College.find({}).sort({
       totalPoints: -1,
     });
+
     return res.status(200).json({
       success: true,
       message: "Fetched All College successfully",
@@ -128,10 +129,44 @@ const reduceTotalPointValue = async (req, res) => {
     });
   }
 };
+const updateCollegeWithEvents = async (req, res) => {
+  try {
+    const colleges = await College.find({});
 
+    for (const college of colleges) {
+      const winners = await Winner.find({
+        $or: [
+          { "firstPrize.collegeName": college.name },
+          { "secondPrize.collegeName": college.name },
+          { "thirdPrize.collegeName": college.name },
+        ],
+      });
+
+      const eventNames = winners.map((winner) => winner.eventName);
+
+      await College.findOneAndUpdate(
+        { name: college.name },
+        { $addToSet: { eventName: { $each: eventNames } } },
+        { new: true }
+      );
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Updated colleges with event names successfully",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
 module.exports = {
   addCollege,
   getAllCollege,
   addTotalPointValue,
   reduceTotalPointValue,
+  updateCollegeWithEvents,
 };
