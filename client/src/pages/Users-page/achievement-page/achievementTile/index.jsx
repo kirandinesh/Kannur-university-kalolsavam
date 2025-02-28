@@ -9,15 +9,19 @@ function AchievementTile({ achievement }) {
         <span className="font-bold text-3xl">
           {achievement?.achievementName}
         </span>
-        <div className="flex">
-          <span className="text-md mt-2 border-l-4 border-white pl-2 leading-6   ">
-            <p className="font-black font-heading tracking-wider text-xl text-cyan-500  ">
-              <span className="absolute inset-0" />
-              {achievement?.studentName[0].toUpperCase() +
-                achievement?.studentName.slice(1)}
-            </p>
-          </span>
-        </div>
+        {achievement?.studentName.length > 0 ? (
+          <div className="flex">
+            <span className="text-md mt-2 border-l-4 border-white pl-2 leading-6   ">
+              <p className="font-black font-heading tracking-wider text-xl text-cyan-500  ">
+                <span className="absolute inset-0" />
+                {achievement?.studentName[0].toUpperCase() +
+                  achievement?.studentName.slice(1)}
+              </p>
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="flex">
           <span className="text-md mt-2 border-l-4 sm:text-xl  border-white pl-2   ">
             <p className="font-bold text-sky-300 ">

@@ -3,7 +3,7 @@ const addNewAchievement = async (req, res) => {
   try {
     const { achievementName, studentName, collegeName, points } = req.body;
 
-    if (!achievementName || !studentName) {
+    if (!achievementName) {
       return res.status(400).json({
         success: false,
         message: "Achievement name and student name are required.",

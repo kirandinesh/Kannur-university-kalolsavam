@@ -25,10 +25,6 @@ const AdminAddAchievementPage = () => {
   async function handleAddOrUpdateAchievement(e) {
     e.preventDefault();
 
-    if (!achieventFormData.achievementName || !achieventFormData.studentName) {
-      toast.error("Please provide both Achievement Name and Student Name.");
-      return;
-    }
     const toastId = toast.loading(
       currentEditedId ? "Updating achievement..." : "Adding achievement..."
     );
@@ -104,6 +100,7 @@ const AdminAddAchievementPage = () => {
   useEffect(() => {
     fetchAllAchievements();
   }, []);
+  console.log(achieventList, "ach");
 
   return (
     <div className="flex flex-col gap-6">
@@ -136,9 +133,13 @@ const AdminAddAchievementPage = () => {
                       <div className="uppercase font-bold font-subHeading text-lg">
                         {achievement?.achievementName}
                       </div>
-                      <div className="text-gray-400 font-semibold font-texts text-base mt-2">
-                        <p>{achievement?.studentName}</p>
-                      </div>
+                      {achievement?.studentName.length > 0 ? (
+                        <div className="text-gray-400 font-semibold font-texts text-base mt-2">
+                          <p>{achievement?.studentName}</p>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <div className="text-gray-400 font-semibold font-texts text-base mt-2">
                         <p>{achievement?.collegeName}</p>
                       </div>

@@ -795,6 +795,21 @@ export const achievementOptions = [
   { id: "nritha-prathibha", label: "Nritha Prathibha" },
   { id: "sangeetha-prathibha", label: "Sangeetha Prathibha" },
   { id: "drisya-nataka-prathibha", label: "Drisya-Nataka Prathibha" },
+  {
+    id: "Sarvakalashala-prathibha-male",
+    label: "Sarvakalashala Prathibha Male",
+  },
+  {
+    id: "SAHITHYOLSAVAM-CHAMPIONSHIP",
+    label: "SAHITHYOLSAVAM CHAMPIONSHIP",
+  },
+  { id: "CHITHROLSAVAM-CHAMPIONSHIP", label: "CHITHROLSAVAM CHAMPIONSHIP" },
+  { id: "SANGEETHOLSAVAM-CHAMPIONSHIP", label: "SANGEETHOLSAVAM CHAMPIONSHIP" },
+  { id: "NRITHOLSAVAM-CHAMPIONSHIP", label: "NRITHOLSAVAM CHAMPIONSHIP" },
+  {
+    id: "DRISHYA-NATAKOLSAVAM-CHAMPIONSHIP",
+    label: "DRISHYA NATAKOLSAVAM CHAMPIONSHIP",
+  },
 ];
 export const achievementFormcontrol = [
   {
