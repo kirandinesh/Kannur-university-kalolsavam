@@ -800,6 +800,10 @@ export const achievementOptions = [
     label: "Sarvakalashala Prathibha Male",
   },
   {
+    id: "Sarvakalashala-prathibha-female",
+    label: "Sarvakalashala Prathibha Female",
+  },
+  {
     id: "SAHITHYOLSAVAM-CHAMPIONSHIP",
     label: "SAHITHYOLSAVAM CHAMPIONSHIP",
   },
