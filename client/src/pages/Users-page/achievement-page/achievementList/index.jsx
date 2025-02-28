@@ -21,7 +21,7 @@ function AchievementList() {
     <section id="achievement" className=" overflow-hidden pt-10 sm:pt-20 ">
       <div className="flex justify-center items-center sm:mt-8 sm:mb-10">
         <h1 className="text-xl  uppercase font-bold sm:text-4xl md:text-5xl">
-          Individual Achievements
+          Achievements
         </h1>
       </div>
       <main className="grid grid-cols-1 lg:grid lg:grid-cols-2 gap-5 mt-5">
