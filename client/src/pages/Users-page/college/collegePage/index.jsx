@@ -65,7 +65,7 @@ function UserViewCollegePage() {
   ];
   const [showConfetti, setShowConfetti] = useState(true);
   useEffect(() => {
-    if (showConfetti) setTimeout(() => setShowConfetti(false), 15000);
+    if (showConfetti) setTimeout(() => setShowConfetti(false), 30000);
   }, [showConfetti]);
 
   return (
