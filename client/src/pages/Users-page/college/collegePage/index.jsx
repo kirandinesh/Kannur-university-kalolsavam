@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import TopCollegeTile from "../TopCollege-Tile";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   getAllCollegeList,
   userFetchAllOffstageCollege,
@@ -9,6 +9,7 @@ import {
 import { UserViewContext } from "@/context/userView-context";
 import TopOffStageTile from "../TopoffStage-Tile";
 import TopOnStageTile from "../ToponStage-Tile";
+import ReactConfetti from "react-confetti";
 
 function UserViewCollegePage() {
   const {
@@ -27,7 +28,7 @@ function UserViewCollegePage() {
     }
   }
 
-  const collegeListSlice = collegeList.slice(0, 3);
+  const collegeListSlice = collegeList.slice(0, 4);
 
   async function fetchAllOffStageCollege() {
     const response = await userFetchAllOffstageCollege();
@@ -58,19 +59,29 @@ function UserViewCollegePage() {
 
   const layoutClasses = [
     "2xl:col-start-2 2xl:col-end-4 2xl:row-span-2",
-    "2xl:col-start-1 2xl:col-end-3 2xl:row-span-1",
-    "2xl:col-start-3 2xl:col-end-5 2xl:row-span-1",
+    "2xl:col-start-1 2xl:col-end-3 2xl:row-span-4",
+    "2xl:col-start-3 2xl:col-end-5 2xl:row-span-4",
+    "2xl:col-start-2 2xl:col-end-4 2xl:row-span-4",
   ];
+  const [showConfetti, setShowConfetti] = useState(true);
+  useEffect(() => {
+    if (showConfetti) setTimeout(() => setShowConfetti(false), 15000);
+  }, [showConfetti]);
 
   return (
-    <section id="college" className=" overflow-hidden   ">
+    <section id="college" className="relative overflow-hidden   ">
+      {showConfetti && (
+        <div className="absolute z-50">
+          <ReactConfetti />
+        </div>
+      )}
       <div>
         <div className="flex justify-center items-center sm:mt-8 sm:mb-10">
           <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl">
-            Leading College
+            Overall Champions
           </h1>
         </div>
-        <main className="grid grid-cols-1 2xl:grid-cols-4 gap-5 mt-5">
+        <main className="grid grid-cols-1 2xl:grid-cols-4 gap-5 my-5 ">
           {collegeListSlice.length > 0 ? (
             collegeListSlice.map((college, index) => (
               <Card key={index} className={layoutClasses[index]}>

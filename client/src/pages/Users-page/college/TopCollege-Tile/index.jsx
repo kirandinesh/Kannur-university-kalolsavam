@@ -3,6 +3,7 @@ function TopCollegeTile({ college, index }) {
     "bg-gradient-to-r from-yellow-400 to-yellow-600",
     "bg-gradient-to-r from-gray-300 to-gray-500",
     "bg-gradient-to-r from-orange-500 to-orange-700",
+    "bg-gradient-to-r from-[#cd7f32] to-[#b87333]",
   ];
   return (
     <div

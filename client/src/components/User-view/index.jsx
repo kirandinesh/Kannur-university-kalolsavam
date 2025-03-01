@@ -8,12 +8,7 @@ import PreLoader from "../PreLoader/PreLoader";
 const UserViewCollegePage = lazy(() =>
   import("@/pages/Users-page/college/collegePage")
 );
-const UserViewCollegeListingPage = lazy(() =>
-  import("@/pages/Users-page/college/collegeListingPage")
-);
-const EventStatusComponent = lazy(() =>
-  import("@/pages/Users-page/event-pages/event-statusPage")
-);
+
 const IndividualResultSection = lazy(() =>
   import("@/pages/Users-page/result-page/individualItem-result")
 );
@@ -23,7 +18,7 @@ const AchievementList = lazy(() =>
 
 function UserCommonLayout() {
   return (
-    <div className="w-screen min-h-screen  overflow-hidden">
+    <div className="relative w-screen min-h-screen  overflow-hidden">
       <PreLoader />
       <div className="flex">
         <div>
@@ -43,7 +38,7 @@ function UserCommonLayout() {
         >
           <UserViewCollegePage />
           {/* <EventStatusComponent /> */}
-          <UserViewCollegeListingPage />
+          {/* <UserViewCollegeListingPage /> */}
           <IndividualResultSection />
           <AchievementList />
         </Suspense>
