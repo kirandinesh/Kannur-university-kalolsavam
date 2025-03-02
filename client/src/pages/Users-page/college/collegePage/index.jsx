@@ -71,7 +71,7 @@ function UserViewCollegePage() {
   return (
     <section id="college" className="relative overflow-hidden   ">
       {showConfetti && (
-        <div className="absolute z-50">
+        <div className="absolute">
           <ReactConfetti />
         </div>
       )}

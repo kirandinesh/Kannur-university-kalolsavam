@@ -18,7 +18,7 @@ const AchievementList = lazy(() =>
 
 function UserCommonLayout() {
   return (
-    <div className="relative w-screen min-h-screen  overflow-hidden">
+    <div className=" w-screen min-h-screen  overflow-hidden">
       <PreLoader />
       <div className="flex">
         <div>

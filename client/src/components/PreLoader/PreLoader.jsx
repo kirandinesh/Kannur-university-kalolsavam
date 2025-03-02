@@ -6,7 +6,7 @@ const PreLoader = () => {
     preLoaderAnim();
   }, []);
   return (
-    <div className="preloader  w-screen h-screen z-50">
+    <div className="preloader  w-screen h-screen">
       <div className="card">
         <div className="loader">
           <p>loading</p>
