@@ -1,23 +1,19 @@
 import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
-import { useRef } from "react";
 
 function IndividualResultTile({ result }) {
-  const pluginFirst = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
-  const pluginSecond = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
-  const pluginThird = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
-  );
+  const [pluginFirst] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 3000, stopOnInteraction: true }),
+  ]);
+  const [pluginSecond] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 3000, stopOnInteraction: true }),
+  ]);
+  const [pluginThird] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 3000, stopOnInteraction: true }),
+  ]);
+
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   ]);
@@ -65,20 +61,14 @@ function IndividualResultTile({ result }) {
                   </span>
                 </div>
                 <div className="w-full   flex justify-center overflow-x-auto">
-                  <Carousel
-                    opts={{
-                      align: "start",
-                      loop: true,
-                    }}
-                    plugins={[pluginFirst.current]}
-                    onMouseEnter={pluginFirst.current.stop}
-                    onMouseLeave={pluginFirst.current.play}
-                    className="w-full flex   justify-center"
+                  <div
+                    className="embla w-full flex justify-center"
+                    ref={pluginFirst}
                   >
-                    <CarouselContent>
+                    <div className="embla__container w-full">
                       {result?.firstPrize?.map((first) => (
-                        <CarouselItem
-                          className="  flex  w-md  justify-center"
+                        <div
+                          className="embla__slide flex  w-md  justify-center"
                           key={first._id}
                         >
                           <div className="text-center border-2 rounded-xl shadow-sm pt-5  w-full p-3  relative  ">
@@ -98,7 +88,7 @@ function IndividualResultTile({ result }) {
                                 <div className="border-t border-b py-1 mb-1">
                                   <span></span>
                                 </div>
-                                <div className="embla " ref={emblaRef}>
+                                <div className="embla" ref={emblaRef}>
                                   <div className="embla__container">
                                     {first?.members?.map((member, idx) => (
                                       <div
@@ -121,10 +111,10 @@ function IndividualResultTile({ result }) {
                               ""
                             )}
                           </div>
-                        </CarouselItem>
+                        </div>
                       ))}
-                    </CarouselContent>
-                  </Carousel>
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -147,20 +137,14 @@ function IndividualResultTile({ result }) {
                   </span>
                 </div>
                 <div className="w-full  flex justify-center overflow-x-auto">
-                  <Carousel
-                    opts={{
-                      align: "start",
-                      loop: true,
-                    }}
-                    plugins={[pluginSecond.current]}
-                    onMouseEnter={pluginSecond.current.stop}
-                    onMouseLeave={pluginSecond.current.play}
-                    className="w-full flex   justify-center"
+                  <div
+                    className="embla w-full flex   justify-center"
+                    ref={pluginSecond}
                   >
-                    <CarouselContent>
+                    <div className="embla__container w-full">
                       {result?.secondPrize?.map((second) => (
-                        <CarouselItem
-                          className="  flex  w-md  justify-center"
+                        <div
+                          className="embla__slide flex w-md justify-center"
                           key={second._id}
                         >
                           <div className="text-center border-2 rounded-xl shadow-sm  pt-5 w-full p-3 relative  ">
@@ -180,7 +164,7 @@ function IndividualResultTile({ result }) {
                                 <div className="border-t border-b py-1 mt-2 mb-1">
                                   <span></span>
                                 </div>
-                                <div className="embla " ref={emblaRefsecond}>
+                                <div className="embla" ref={emblaRefsecond}>
                                   <div className="embla__container">
                                     {second?.members?.map((member, idx) => (
                                       <div
@@ -203,10 +187,10 @@ function IndividualResultTile({ result }) {
                               ""
                             )}
                           </div>
-                        </CarouselItem>
+                        </div>
                       ))}
-                    </CarouselContent>
-                  </Carousel>
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -229,20 +213,14 @@ function IndividualResultTile({ result }) {
                   </span>
                 </div>
                 <div className="w-full  flex justify-center items-center ">
-                  <Carousel
-                    opts={{
-                      align: "start",
-                      loop: true,
-                    }}
-                    plugins={[pluginThird.current]}
-                    onMouseEnter={pluginThird.current.stop}
-                    onMouseLeave={pluginThird.current.play}
-                    className="w-full flex   justify-center"
+                  <div
+                    className="embla w-full flex justify-center"
+                    ref={pluginThird}
                   >
-                    <CarouselContent>
+                    <div className="embla__container w-full">
                       {result?.thirdPrize?.map((third) => (
-                        <CarouselItem
-                          className="  flex  w-md  justify-center"
+                        <div
+                          className="embla__slide  flex  w-md  justify-center"
                           key={third._id}
                         >
                           <div className="text-center border-2 rounded-xl shadow-sm  w-full pt-5 p-3 relative  ">
@@ -285,10 +263,10 @@ function IndividualResultTile({ result }) {
                               ""
                             )}
                           </div>
-                        </CarouselItem>
+                        </div>
                       ))}
-                    </CarouselContent>
-                  </Carousel>
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
