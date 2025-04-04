@@ -45,6 +45,13 @@ app.listen(PORT, () => {
   console.log(`Server is now Running on port ${PORT}`);
 });
 
+app.get("/", (req, res) => {
+  res.send({
+    activeStatus: true,
+    error: false,
+  });
+});
+
 app.use("/auth", authRouter);
 app.use("/admin/result", adminResultRouter);
 app.use("/admin/college", adminCollegeRouter);
